@@ -1,3 +1,2 @@
-require("remap")
-require("plugins")
-print("hello")
+require("onnoy.core")
+require("onnoy.lazy")
