@@ -87,10 +87,12 @@ function command_not_found_handler {
 }
 
 # Detect the AUR wrapper
-if pacman -Qi yay &>/dev/null ; then
-   aurhelper="yay"
+if pacman -Qi pikaur &>/dev/null ; then
+   aurhelper="pikaur"
 elif pacman -Qi paru &>/dev/null ; then
    aurhelper="paru"
+elif pacman -Qi yay &>/dev/null ; then
+  aurhelper="yay"
 fi
 
 function in {
