@@ -49,3 +49,10 @@ opt.undofile = true
 -- split windows
 opt.splitright = true
 opt.splitbelow = true
+
+-- Case-insensitive searching UNLESS \C or one or more capital letters in the search term
+opt.ignorecase = true
+opt.smartcase = true
+
+-- Minimal number of screen lines to keep above and below the cursor.
+opt.scrolloff = 10

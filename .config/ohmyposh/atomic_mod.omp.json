@@ -12,10 +12,10 @@
           "properties": {
             "folder_icon": "\uf07b",
             // "home_icon": " \ue617 ",
-            "style": "letter"
+            "style": "full"
           },
           "style": "diamond",
-          "template": " {{ .Path }} ",
+          "template": "{{ .Path }} ",
           "type": "path"
         },
         {
@@ -84,7 +84,7 @@
             "always_enabled": true
           },
           "style": "plain",
-          "template": " \ue285 ",
+          "template": "❯ ",
           "type": "status"
         }
       ],
