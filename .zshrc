@@ -110,10 +110,9 @@ function in {
 # Helpful aliases
 alias  c='clear' # clear terminal
 alias  l='eza -lh  --icons=auto' # long list
-alias ls='eza -1   --icons=auto' # short list
+alias ls='eza --icons=auto' # short list
 alias ll='eza -lha --icons=auto --sort=name --group-directories-first' # long list all sorted
-alias la='eza -lha --icons=auto' # long list all
-alias ld='eza -lhD --icons=auto' # long list dirs
+alias la='eza -ha --icons=auto' # long list all
 alias lt='eza --icons=auto --tree' # list folder as tree
 alias un='$aurhelper -Rns' # uninstall package
 alias up='$aurhelper -Syu' # update system/package/aur
@@ -123,6 +122,8 @@ alias pc='$aurhelper -Sc' # remove unused cache
 alias po='$aurhelper -Qtdq | $aurhelper -Rns -' # remove unused packages, also try > $aurhelper -Qqd | $aurhelper -Rsu --print -
 alias vc='code' # gui code editor
 alias nv='nvim' # neovim
+alias lf=yazi
+alias vim=nvim
 
 # Handy change dir shortcuts
 alias ..='cd ..'
@@ -148,4 +149,3 @@ export NVM_DIR="$HOME/.nvm"
 # Shell integrations
 eval "$(fzf --zsh)"
 eval "$(zoxide init --cmd cd zsh)"
-alias lf=yazi

@@ -8,8 +8,9 @@ return {
 		require("lualine").setup({
 			options = {
 				icons_enabled = true,
-				theme = "tokyonight",
+				theme = "catppuccin",
 			},
+			extension = { "quichfix" },
 			sections = {
 				lualine_x = {
 					{

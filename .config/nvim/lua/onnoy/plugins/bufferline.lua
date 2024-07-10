@@ -4,9 +4,9 @@ return {
 	version = "*",
 	opts = {
 		options = {
-			mode = "tabs",
-			separator_style = {"|", "|"},
-      numbers = "buffer_id",
+			mode = "buffers",
+			separator_style = { "|", "|" },
+			numbers = "buffer_id",
 		},
 	},
 }

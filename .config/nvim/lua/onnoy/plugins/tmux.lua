@@ -1,5 +1,6 @@
 return {
 	"nathom/tmux.nvim",
+	lazy = false,
 	config = function()
 		local map = vim.api.nvim_set_keymap
 		map("n", "<C-h>", [[<cmd>lua require('tmux').move_left()<cr>]], { desc = "Go left tmux window" })
