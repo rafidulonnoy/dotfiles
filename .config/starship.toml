@@ -1,0 +1,106 @@
+format = """
+$directory\
+$git_branch\
+$git_status\
+$fill\
+$c\
+$golang\
+$java\
+$lua\
+$memory_usage\
+$nix_shell\
+$nodejs\
+$php\
+$python\
+$shell\
+$cmd_duration\
+$line_break\
+$character\
+"""
+
+# Path Configuration
+scan_timeout = 30
+command_timeout = 500
+
+[directory]
+style = "#94E2D5"
+format = "[$path]($style) "
+truncate_to_repo = true
+read_only = " 󰌾"
+
+[directory.substitutions]
+"Documents" = "󰈙 "
+"Downloads" = " "
+"Music" = "󰝚 "
+"Pictures" = " "
+"Developer" = "󰲋 "
+
+# # Git Branch Configuration
+[git_branch]
+symbol = " "
+style = "#94E2D5"
+
+# Git Status Configuration
+[git_status]
+conflicted = '🏳'
+ahead = '🏎💨'
+behind = '😰'
+diverged = '😵'
+up_to_date = '✓'
+untracked = '🤷'
+stashed = '📦'
+modified = '📝'
+staged = '[++\($count\)](green)'
+renamed = '👅'
+deleted = '🗑'
+style = "#86BBD8"
+format = "[ $all_status$ahead_behind ]($style)"
+
+# Shell Type
+[shell]
+unknown_indicator = 'mystery shell'
+style = 'cyan bold'
+disabled = false
+
+# Command Status
+[character]
+success_symbol = "[❯](blue)"
+error_symbol = "[❯](red)"
+vimcmd_symbol = "[❮](green)"
+vimcmd_visual_symbol = '[❮](#FADA5E)'
+
+# Execution Time
+[cmd_duration]
+min_time = 0  # Always show the execution time
+format = "[⏱ $duration](yellow)"
+style = "yellow"
+
+[fill]
+symbol = ' '
+
+[c]
+symbol = " "
+
+[golang]
+symbol = " "
+
+[java]
+symbol = " "
+
+[lua]
+symbol = " "
+
+[memory_usage]
+symbol = "󰍛 "
+
+[nix_shell]
+symbol = " "
+
+[nodejs]
+symbol = " "
+
+[php]
+symbol = " "
+
+[python]
+symbol = " "
