@@ -1,0 +1,255 @@
+@import url('theme.css');
+
+/* =============================== */
+/* Universal styling */
+* {
+    border: none;
+    border-radius: 0px;
+    font-family: "JetBrainsMono Nerd Font";
+    font-weight: bold;
+    font-size: 12px;
+    min-height: 10px;
+}
+
+/* =============================== */
+
+@import "theme.css";
+
+/* =============================== */
+
+/* bar styling */
+window#waybar {
+    background: transparent;
+    color: @text
+}
+
+/* =============================== */
+
+/* main modules */
+
+#backlight,
+#battery,
+#bluetooth,
+#custom-cava,
+#custom-cliphist,
+#clock,
+#cpu,
+#custom-gpuinfo,
+#custom-cpuinfo,
+#custom-spotify,
+#custom-keybindhint,
+#custom-notification,
+#custom-pacman,
+#custom-wallchange,
+#custom-wbar,
+#custom-theme,
+#custom-power,
+#disk,
+#idle_inhibitor,
+#language,
+#memory,
+#mpris,
+#network,
+#privacy,
+#pulseaudio,
+#taskbar,
+#temperature,
+#tray,
+#window,
+#workspaces,
+#custom-l_end,
+#custom-r_end,
+#custom-sl_end,
+#custom-sr_end,
+#custom-rl_end,
+#custom-rr_end {
+    background: @surface0;
+    color: @text;
+    opacity: 1;
+    margin: 2px 0px;
+    padding: 0rem 0.2rem;
+}
+
+tooltip {
+    background: @base;
+    color: @blue;
+    border-radius: 7px;
+    border-width: 0px;
+}
+
+#custom-notification {
+  color:@yellow;
+  padding: 0px 0px;
+  transition: all .3s ease;
+}
+
+#cpu,
+#memory,
+#temperature{
+  color:@blue;
+}
+
+#disk {
+  color: @teal;
+}
+
+#idle_inhibitor,
+#clock{
+  color:@marron;
+}
+
+#workspaces,
+#taskbar {
+    padding: 0px;
+}
+
+#workspaces button {
+    background-color: @surface3;
+    color: @mauve;
+    box-shadow: none;
+	  text-shadow: none;
+    padding: 0rem 0.1rem;
+    margin:0.2rem 0.2rem;
+    border-radius: 0.8rem;
+    animation: ws_normal 20s ease-in-out 1;
+}
+
+#workspaces button.active {
+    background: @lavender;
+    color: @crust;
+    padding: 0rem 0.1rem;
+    margin:0.2rem 0.2rem;
+    animation: ws_active 20s ease-in-out 1;
+    transition: all 0.4s cubic-bezier(.55,-0.68,.48,1.682);
+}
+
+#workspaces button:hover {
+    background-color: @mauve;
+    color:@base;
+}
+
+#window{
+  color:@lavender;
+}
+
+#backlight{
+  color:@flamingo;
+}
+
+#pulseaudio{
+  color: @mauve;
+}
+
+#custom-pacman{
+    transition: all .3s ease;
+    color:@green;
+}
+
+#tray {
+  color: @mauve;
+}
+
+#tray menu separator {
+  color:@lavender;
+}
+
+#battery{
+  color: @rosewater;
+}
+
+#battery.charging{
+  color: @green;
+}
+
+#battery.warning:not(.charging){
+  color: @marron;
+}
+
+#battery.critical:not(.charging){
+  color: @red;
+  animation-name:blink;
+    animation-duration:1s;
+    animation-timing-function:linear;
+    animation-iteration-count:infinite;
+    animation-direction:alternate;
+}
+
+@keyframes blink{
+to{
+  background:@red;
+  color:@surface1;
+  }
+}
+
+#taskbar button {
+    box-shadow: none;
+	text-shadow: none;
+    padding: 0px;
+    border-radius: 8px;
+    margin-top: 2px;
+    margin-bottom: 2px;
+    margin-left: 0px;
+    padding-left: 2px;
+    padding-right: 2px;
+    margin-right: 0px;
+    color: @wb-color;
+    animation: tb_normal 20s ease-in-out 1;
+}
+
+#taskbar button.active {
+    background: @wb-act-bg;
+    color: @wb-act-color;
+    margin-left: 2px;
+    padding-left: 11px;
+    padding-right: 11px;
+    margin-right: 2px;
+    animation: tb_active 20s ease-in-out 1;
+    transition: all 0.4s cubic-bezier(.55,-0.68,.48,1.682);
+}
+
+#taskbar button:hover {
+    background: @wb-hvr-bg;
+    color: @wb-hvr-color;
+    animation: tb_hover 20s ease-in-out 1;
+    transition: all 0.3s cubic-bezier(.55,-0.68,.48,1.682);
+}
+
+#custom-power{
+  color: @peach;
+}
+
+#custom-r_end {
+    border-radius: 0px 19px 19px 0px;
+    margin-right: 8px;
+    padding-right: 0px;
+}
+
+#custom-l_end {
+    border-radius: 19px 0px 0px 19px;
+    margin-left: 8px;
+    padding-left: 0px;
+}
+
+#custom-sr_end {
+    border-radius: 0px;
+    margin-right: 8px;
+    padding-right: 0px;
+}
+
+#custom-sl_end {
+    border-radius: 0px;
+    margin-left: 8px;
+    padding-left: 0px;
+}
+
+#custom-rr_end {
+    border-radius: 0px 7px 7px 0px;
+    margin-right: 8px;
+    padding-right: 0px;
+}
+
+#custom-rl_end {
+    border-radius: 7px 0px 0px 7px;
+    margin-left: 8px;
+    padding-left: 0px;
+}
