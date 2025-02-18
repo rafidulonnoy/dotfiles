@@ -208,3 +208,4 @@ function lazyg() {
 	git commit -m "$1"
 	git push
 }
+[ "$(tty)" = "/dev/tty1" ] && exec Hyprland

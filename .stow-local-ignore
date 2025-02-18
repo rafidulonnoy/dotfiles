@@ -1,6 +1,7 @@
-oh-my-posh/
 .git
 rafidulonnoy.code-profile
-oh-my-posh
+fullinstall.sh
+.zsh_history
+.bash_history
 README.md
 LICENSE

@@ -1,0 +1,14 @@
+[[plugin.deps]]
+use = "yazi-rs/plugins:mount"
+rev = "beb586a"
+hash = "5c4d8080367dd2561a18c1cf5a1dd295"
+
+[[flavor.deps]]
+use = "dangooddd/kanagawa"
+rev = "d98f0c3"
+hash = "cada780385f75abbcfbf5343256b441"
+
+[[flavor.deps]]
+use = "yazi-rs/flavors:catppuccin-frappe"
+rev = "1a419b2"
+hash = "e88895e8f8b7926f20946f273ecc7348"
