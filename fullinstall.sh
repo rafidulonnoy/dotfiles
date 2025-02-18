@@ -123,6 +123,8 @@ if command -v stow &> /dev/null; then
   read -p "Do you want to add the dotfiles to their respective location using stow or do you want to hard copy them? (y/n): " -n 1 -r
   echo  # Add a newline after single-character input
   if [[ $REPLY =~ ^[Yy]$ ]]; then
+    cd ~/.config
+    rm -rf cava fastfetch fish ghostty hypr kanata kitty nix nvim nvim_new ohmyposh swaync Thunar tmux wal waybar wlogout wofi yazi starship.toml
     cd ~/dotfiles
     stow .
     cd -
