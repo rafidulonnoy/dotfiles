@@ -5,14 +5,8 @@ return {
 	opts = {
 		options = {
 			mode = "buffers",
-			-- separator_style = { "|", "|" },
+			separator_style = { "|", "|" },
 			--numbers = "buffer_id",
-		},
-		highlights = {
-			separator_selected = {
-				fg = "#393552", -- Rose Pine Moon "highlight" color
-				bg = "#2a283d",
-			},
 		},
 	},
 }

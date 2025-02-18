@@ -4,8 +4,8 @@ vim.keymap.set("n", "<leader>q", vim.cmd.q, { desc = "Quit" })
 
 local keymap = vim.keymap -- for conciseness
 
-keymap.set("i", "jj", "<ESC>", { desc = "Exit insert mode with jk" })
-keymap.set("i", "kk", "<ESC>", { desc = "Exit insert mode with kj" })
+keymap.set("i", "jk", "<ESC>", { desc = "Exit insert mode with jk" })
+keymap.set("i", "kj", "<ESC>", { desc = "Exit insert mode with kj" })
 
 keymap.set("n", "<Esc>", "<cmd>nohlsearch<CR>", { desc = "Clear search highlights" })
 
