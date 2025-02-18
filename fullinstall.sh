@@ -18,7 +18,7 @@ if command -v paru &> /dev/null; then
 else
   echo "paru not installed. Installing paru..."
   git clone https://aur.archlinux.org/paru.git ~/paru
-  cd paru
+  cd ~/paru
   makepkg -si --noconfirm
   cd -
   rm -rf ~/paru
@@ -27,7 +27,7 @@ fi
 if [ -d "~/wallpaper" ]; then
   echo "wallpaper directory found."
 else
-  git clone https://github.com/rafidulonnoy/wallpaper.git
+  git clone https://github.com/rafidulonnoy/wallpaper.git ~/wallpaper
 fi
 # list of packages to install
 APPS=(

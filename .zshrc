@@ -130,7 +130,7 @@ function in {
 # Helpful aliases
 alias  c='clear' # clear terminal
 alias  l='eza -lh  --icons=auto' # long list
-alias ls='eza --icons=auto -a' # short list
+alias ls='eza --icons=auto' # short list
 alias ll='eza -lha --icons=auto --sort=name --group-directories-first' # long list all sorted
 alias la='eza -a --icons=auto' # long list all
 alias lt='eza --icons=auto --tree' # list folder as tree
