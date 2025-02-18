@@ -80,6 +80,7 @@ APPS=(
   "pyprland"
   "qt6ct"
   "starship"
+  "stow"
   "swww"
   "swaync"
   "ttf-font-awesome"
