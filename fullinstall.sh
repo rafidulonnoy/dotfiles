@@ -1,4 +1,5 @@
 #!/bin/bash
+cd -
 required_commands=("base-devel" "git")
 for app in "${required_commands[@]}"; do
   if pacman -Qi "$app" &> /dev/null; then
