@@ -5,3 +5,4 @@ fullinstall.sh
 .bash_history
 README.md
 LICENSE
+/.config/nvim_new

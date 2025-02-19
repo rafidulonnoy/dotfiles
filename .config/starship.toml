@@ -2,6 +2,7 @@ format = """
 $directory\
 $git_branch\
 $git_status\
+$git_commit\
 $fill\
 $c\
 $golang\
@@ -26,7 +27,7 @@ command_timeout = 500
 style = "#94E2D5"
 format = "[$path]($style) "
 truncate_to_repo = true
-read_only = " 󰌾"
+read_only = " 󰌾 "
 
 [directory.substitutions]
 "Documents" = "󰈙 "
@@ -39,6 +40,7 @@ read_only = " 󰌾"
 [git_branch]
 symbol = " "
 style = "#94E2D5"
+format = '[$symbol($version)]($style)'
 
 # Git Status Configuration
 [git_status]
@@ -55,6 +57,10 @@ renamed = '👅'
 deleted = '🗑'
 style = "#86BBD8"
 format = "[ $all_status$ahead_behind ]($style)"
+
+[git_commit]
+tag_symbol = '  '
+format = '[$symbol($version)]($style)'
 
 # Shell Type
 [shell]

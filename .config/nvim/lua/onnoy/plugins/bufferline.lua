@@ -5,8 +5,8 @@ return {
 	opts = {
 		options = {
 			mode = "buffers",
-			separator_style = { "|", "|" },
-			--numbers = "buffer_id",
+			-- separator_style = { "|", "|" },
+			-- numbers = "buffer_id",
 		},
 	},
 }
