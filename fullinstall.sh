@@ -67,6 +67,10 @@ APPS=(
   "materia-gtk-theme"
   "neovim"
   "network-manager-applet"
+  "noto-fonts"
+  "noto-fonts-cjk"
+  "noto-fonts-emoji"
+  "noto-fonts-extra"
   "nwg-look"
   "ncspot"
   "pavucontrol"
@@ -113,6 +117,8 @@ for app in "${APPS[@]}"; do
 done
 echo "All requested apps processed."
 
+swww-daemon
+swww img ~/wallpaper/assassin\'sCreed.png
 wal -i ~/wallpaper/assassin\'sCreed.png -n
 systemctl enable bluetooth
 systemctl --user enable pipewire.service pipewire-pulse.service

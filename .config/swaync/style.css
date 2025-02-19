@@ -30,7 +30,7 @@
 .floating-notifications.background .notification-background .notification .notification-content {
 }
 .notification{
-    background: alpha(@mycolor,.5);
+    background: alpha(@mycolor,.1);
 
 }
 
@@ -72,11 +72,11 @@
     padding-right:10px;
 }
 
-.control-center .notification-row .notification-background .notification..notification-content image,
+.control-center .notification-row .notification-background .notification.notification-content image,
 .control-center .notification-row .notification-background .notification.normal .notification-content image,
 .floating-notifications.background .notification-background .notification.low .notification-content image,
 .floating-notifications.background .notification-background .notification.normal .notification-content image {
-    background-color: unset;
+    background-color: transparent;
 }
 
 .control-center .notification-row .notification-background .notification.low .notification-content .body,
@@ -165,6 +165,10 @@
     text-shadow: none;
     color:@text;
 
+}
+
+.floating-notifications.background{
+  background-color:transparent;
 }
 
 .control-center {
@@ -277,12 +281,12 @@
 }
 
 .widget-buttons-grid>flowbox>flowboxchild>button label {
-    font-size: 20px;
+    font-size: 1.0rem;
     color: @color7;
     transition: all .7s ease;
 }
 .widget-buttons-grid>flowbox>flowboxchild>button:hover label {
-    font-size: 20px;
+    font-size: 1.0rem;
     color: @text;
     transition: all .7s ease;
 }

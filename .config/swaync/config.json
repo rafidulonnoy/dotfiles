@@ -19,7 +19,7 @@
     "notification-body-image-width": 180,
     "timeout": 3,
     "timeout-low": 2,
-    "timeout-critical": 1,
+    "timeout-critical": 5,
     "fit-to-screen": true,
     "keyboard-shortcuts": true,
     "image-visibility": "when available",
@@ -59,20 +59,20 @@
         "buttons-grid": {
             "actions": [
                 {
-                    "label":"󰤄",
+                    "label":"󰤄 DND",
                     "command": "swaync-client -d",
                     "type":"toggle"
                 },
                 {
-                    "label": "",
+                    "label": " LOCK",
                     "command": "hyprlock"
                 },
                 {
-                    "label":"",
+                    "label":" REBOOT",
                     "command": "reboot"
                 },
                 {
-                    "label":"",
+                    "label":" SHUTDOWN",
                     "command": "shutdown now"
                 }
 
