@@ -2,8 +2,8 @@
   "layer": "top",
     "position": "top",
     "reload_style_on_change": true,
-	"modules-left": ["custom/padd","custom/l_end","custom/notification","cpu","memory","temperature","disk","custom/r_end","custom/l_end","idle_inhibitor","clock","custom/r_end","custom/padd"],
-	"modules-center": ["custom/padd","custom/l_end","hyprland/workspaces","hyprland/window","custom/r_end","custom/padd"],
+	"modules-left": ["custom/l_end","custom/notification","cpu","memory","temperature","disk","custom/r_end","custom/l_end","idle_inhibitor","clock","custom/r_end","custom/l_end","hyprland/workspaces","custom/r_end","custom/padd"],
+	"modules-center": ["custom/padd","custom/l_end","hyprland/window","custom/r_end","custom/padd"],
 	"modules-right": ["custom/padd","custom/l_end","backlight","network","pulseaudio",/*"pulseaudio#microphone",*/"custom/pacman","custom/r_end","custom/l_end","tray","battery","custom/r_end","custom/l_end","custom/power","custom/r_end","custom/padd"],
 
     "custom/notification": {

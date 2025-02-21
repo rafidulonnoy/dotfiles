@@ -73,7 +73,7 @@
     # x11.enable = true;
     package = pkgs.bibata-cursors;
     name = "Bibata-Modern-Ice";
-    size = 20;
+    size = 24;
   };
   home.sessionVariables = {
     # EDITOR = "emacs";
