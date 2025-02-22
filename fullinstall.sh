@@ -73,6 +73,7 @@ APPS=(
   "noto-fonts-extra"
   "nwg-look"
   "ncspot"
+  "obsidian"
   "pavucontrol"
   "poppler"
   "pipewire"
@@ -120,11 +121,6 @@ echo "All requested apps processed."
 swww-daemon
 swww img ~/wallpaper/assassin\'sCreed.png
 wal -i ~/wallpaper/assassin\'sCreed.png -n
-systemctl enable bluetooth
-systemctl --user enable pipewire.service pipewire-pulse.service
-systemctl --user start pipewire.service pipewire-pulse.service
-systemctl --user enable brightnessctl
-systemctl --user start brightnessctl
 # Manages dotfiles
 if command -v stow &> /dev/null; then
   read -p "Do you want to add the dotfiles to their respective location using stow or do you want to hard copy them? (y/n): " -n 1 -r
@@ -141,13 +137,18 @@ if command -v stow &> /dev/null; then
     sudo cp -r -f ~/dotfiles/nixwd-home ~/
   fi
 fi
+if command -v zsh &> /dev/null; then
+  read -p "Enter your username" username
+  sudo chsh -s /usr/bin/zsh $username
+fi
 # INSTALLING nix
 if ! command -v nix &> /dev/null; then
   echo "[INSTALLING] NIX..."
   sh <(curl -L https://nixos.org/nix/install) --daemon
-fi
-if command -v zsh &> /dev/null; then
-  sudo chsh -s /usr/bin/zsh $USER
+  exec zsh
+  cd ~/nixwd-home/
+  nix run home-manager -- init --switch .
+  cd 
 fi
 if command -v yazi &> /dev/null; then
   echo "Configure yazi, for theme install: "
@@ -155,6 +156,13 @@ if command -v yazi &> /dev/null; then
   echo "For mounting disks install: "
   echo "ya pack -a yazi-rs/plugins:mount"
 fi
+sudo systemctl enable bluetooth
+sudo systemctl --user enable pipewire.service pipewire-pulse.service
+sudo systemctl --user start pipewire.service pipewire-pulse.service
+sudo systemctl --user enable brightnessctl
+sudo systemctl --user start brightnessctl
+sudo systemctl --user enable kanata
+sudo systemctl --user start kanata
 tldr -u
 notify-send "Open Terminal with MOD+return" "Hello $USER,\nWelcome to your new Arch install\n-EF"
 echo "Install nerd-fonts package I didn't include it in the apps because it installs around 1GB of fonts in the system."
