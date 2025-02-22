@@ -71,6 +71,7 @@ APPS=(
   "noto-fonts-cjk"
   "noto-fonts-emoji"
   "noto-fonts-extra"
+  "nodejs"
   "nwg-look"
   "ncspot"
   "obsidian"
@@ -156,13 +157,13 @@ if command -v yazi &> /dev/null; then
   echo "For mounting disks install: "
   echo "ya pack -a yazi-rs/plugins:mount"
 fi
-sudo systemctl enable bluetooth
-sudo systemctl --user enable pipewire.service pipewire-pulse.service
-sudo systemctl --user start pipewire.service pipewire-pulse.service
-sudo systemctl --user enable brightnessctl
-sudo systemctl --user start brightnessctl
-sudo systemctl --user enable kanata
-sudo systemctl --user start kanata
+systemctl enable bluetooth
+systemctl --user enable pipewire.service pipewire-pulse.service
+systemctl --user start pipewire.service pipewire-pulse.service
+systemctl --user enable brightnessctl
+systemctl --user start brightnessctl
+systemctl --user enable kanata
+systemctl --user start kanata
 tldr -u
 notify-send "Open Terminal with MOD+return" "Hello $USER,\nWelcome to your new Arch install\n-EF"
 echo "Install nerd-fonts package I didn't include it in the apps because it installs around 1GB of fonts in the system."
