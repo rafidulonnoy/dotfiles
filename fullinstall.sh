@@ -145,7 +145,6 @@ delete_matching_configs() {
       "noto-fonts-cjk"
       "noto-fonts-emoji"
       "noto-fonts-extra"
-      "nodejs"
       "nwg-look"
       "ncspot"
       "obsidian"
@@ -196,10 +195,7 @@ delete_matching_configs() {
     echo "[SUCCESS] All requested apps processed."
 
 # check if swww is running
-if pgrep "swww-daemon" &> /dev/null; then
-  echo '[SKIPPED] swww is running'
-else
-  swww-daemon
+if command -v swww &> /dev/null; then
   swww img ~/wallpaper/assassin\'sCreed.png
 fi
 # check if pywal is running
@@ -209,24 +205,28 @@ else
   wal -i ~/wallpaper/assassin\'sCreed.png -n
 fi
 # Manages dotfiles
-if command -v stow &> /dev/null; then
-  read -p "Do you want to add the config files using stow? (y/n): " -n 1 -r
-  echo  # Add a newline after single-character input
-  if [[ $REPLY =~ ^[Yy]$ ]]; then
-    cd ~/.config
-    delete_matching_configs
-    cd ~/dotfiles
-    stow .
-    cd -
-    echo '[SUCCESS] Added config files successfully'
-  else
-    cd ~/.config
-    delete_matching_configs
-    sudo cp -r -f ~/dotfiles/.config/* ~/.config/
-    sudo cp -r -f ~/dotfiles/.zshrc ~/
-    sudo cp -r -f ~/dotfiles/nixwd-home ~/
-    cd -
-    echo '[SUCCESS] Added config files successfully'
+read -p "Do you want to add the config files? (y/n): " -n 1 -r
+echo  # Add a newline after single-character input
+if [[ $REPLY =~ ^[Yy]$ ]]; then
+  if command -v stow &> /dev/null; then
+    read -p "Do you want to add the config files using stow? (y/n): " -n 1 -r
+    echo  # Add a newline after single-character input
+    if [[ $REPLY =~ ^[Yy]$ ]]; then
+      cd ~/.config
+      delete_matching_configs
+      cd ~/dotfiles
+      stow .
+      cd -
+      echo '[SUCCESS] Added config files successfully'
+    else
+      cd ~/.config
+      delete_matching_configs
+      sudo cp -r -f ~/dotfiles/.config/* ~/.config/
+      sudo cp -r -f ~/dotfiles/.zshrc ~/
+      sudo cp -r -f ~/dotfiles/nixwd-home ~/
+      cd -
+      echo '[SUCCESS] Added config files successfully'
+    fi
   fi
 fi
 if (command -v zsh && echo $SHELL != /usr/bin/zsh) &> /dev/null; then
@@ -244,14 +244,18 @@ fi
 if command -v nix &> /dev/null; then
   echo '[SKIPPED] Nix installed'
 else
-  echo "[INSTALLING] NIX..."
-  sh <(curl -L https://nixos.org/nix/install) --daemon
-  echo '[SUCCESS] Nix was installed'
-  exec zsh
-  cd ~/nixwd-home/
-  nix run home-manager -- init --switch .
-  cd -
-  echo '[SUCCESS] home-manager installed'
+  read -p "Do you want to install nix? (y/n): " -n 1 -r
+  echo  # Add a newline after single-character input
+  if [[ $REPLY =~ ^[Yy]$ ]]; then
+    echo "[INSTALLING] NIX..."
+    sh <(curl -L https://nixos.org/nix/install) --daemon
+    echo '[SUCCESS] Nix was installed'
+    # source ~/.zshrc
+    # cd ~/nixwd-home/
+    # nix run home-manager -- init --switch .
+    # cd -
+    echo '[WARNING] Now cd into nixwd-home and run nix run home-manager -- init --switch . for installing nix programs' 
+  fi
 fi
 if command -v yazi &> /dev/null; then
   if [ ! -d ~/.config/yazi/flavors/catppuccin-frappe.yazi ]; then
@@ -266,6 +270,20 @@ if command -v yazi &> /dev/null; then
   else
     echo 'yazi plugin mount found'
   fi
+fi
+if [[ -s "$HOME/.nvm/nvm.sh" ]]; then
+  echo "[SKIPPED] NVM installed..."
+else
+  # Install NVM
+  NVM_DIR="$HOME/.nvm"
+  curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.1/install.sh | bash
+  echo "[SUCCESS] NVM installed. Reload your shell and run: nvm install node"
+fi
+# Download zinit, if it's not there yet
+ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
+if [ ! -d "$ZINIT_HOME" ]; then
+  mkdir -p "$(dirname $ZINIT_HOME)"
+  git clone https://github.com/zdharma-continuum/zinit.git "$ZINIT_HOME"
 fi
 if pgrep 'bluetooth' &> /dev/null; then
   echo 'bluetooth enabled'
@@ -287,4 +305,6 @@ else
 fi
 chmod +x ~/.config/hypr/scripts/*
 notify-send "Open Terminal with MOD+return" "Hello $USER,\nWelcome to your new Arch install\n"
-echo "Install nerd-fonts package I didn't include it in the apps because it installs around 1GB of fonts in the system."
+hyprctl reload
+echo "[WARNING] Install nerd-fonts package I didn't include it in the apps because it installs around 1GB of fonts in the system."
+echo '[WARNING] Now cd into nixwd-home and run nix run home-manager -- init --switch . for installing nix programs.' 

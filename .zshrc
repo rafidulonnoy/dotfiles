@@ -5,7 +5,7 @@
 eval "$(starship init zsh)"
 
 # executing fastfetch on kitty startup
-if [[ -o interactive ]]; then
+if command -v fastfetch &> /dev/null; then
     fastfetch --load-config ~/.config/fastfetch/config.jsonc
 fi
 
@@ -13,10 +13,10 @@ fi
 ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
 
 # Download zinit, if it's not there yet
-if [ ! -d "$ZINIT_HOME" ]; then
-  mkdir -p "$(dirname $ZINIT_HOME)"
-  git clone https://github.com/zdharma-continuum/zinit.git "$ZINIT_HOME"
-fi
+# if [ ! -d "$ZINIT_HOME" ]; then
+#   mkdir -p "$(dirname $ZINIT_HOME)"
+#   git clone https://github.com/zdharma-continuum/zinit.git "$ZINIT_HOME"
+# fi
 
 # Source/Load zinit
 source "${ZINIT_HOME}/zinit.zsh"
@@ -29,9 +29,9 @@ export MANPATH="/usr/share/man:$MANPATH"
 
 # Node Version Manager
 export NVM_DIR="$HOME/.nvm"
-if !command -v nvm &> /dev/null; then
-  curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.1/install.sh | bash
-fi
+# if !command -v nvm &> /dev/null; then
+#   curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.1/install.sh | bash
+# fi
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
