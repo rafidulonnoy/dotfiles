@@ -9,6 +9,7 @@ return {
 	config = function()
 		require("obsidian").setup({
 			ui = { enable = false },
+			disable_frontmatter = true,
 			workspaces = {
 				{
 					name = "Notes",
