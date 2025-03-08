@@ -13,11 +13,11 @@ return {
 			workspaces = {
 				{
 					name = "Notes",
-					path = "/home/wd/obsidian/2 - Main Notes/",
+					path = "~/obsidian/2-MainNotes/",
 				},
 			},
 			templates = {
-				folder = "~/obsidian/3 - Templates/",
+				folder = "~/obsidian/99-Templates/",
 				date_format = "%e %B - %Y",
 				time_format = "%I:%M %p",
 			},

@@ -171,6 +171,7 @@ delete_matching_configs() {
       "thunar"
       "tumbler"
       "tree"
+      "tmux"
       "udiskie"
       "unzip"
       "vlc"
@@ -281,6 +282,11 @@ else
   NVM_DIR="$HOME/.nvm"
   curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.1/install.sh | bash
   echo "[SUCCESS] NVM installed. Reload your shell and run: nvm install node"
+fi
+# Download tpm for tmux
+TPM_DIR="$HOME/.tmux/plugins/tpm"
+if [ ! -d "TPM_DIR" ]; then
+  git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 fi
 # Download zinit, if it's not there yet
 ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"

@@ -23,7 +23,7 @@ return {
 					enable_preview = true,
 				},
 				find_files = {
-					hidden = true,
+					hidden = false,
 				},
 			},
 			defaults = {
