@@ -3,12 +3,19 @@ ratio          = [ 1, 4, 3 ]
 sort_by        = "alphabetical"
 linemode       = "size"
 show_hidden    = true
+[open]
+rules = [
+    { name = "*.pdf", use = "brave" },
+]
 [opener]
 play = [
 	{ run = 'vlc "$@"', orphan = true, for = "unix" },
 	{ run = '"C:\Program Files\vlc.exe" %*', orphan = true, for = "windows" }
 ]
+brave = [
+    { run = '"C:\\Program Files\\BraveSoftware\\Brave-Browser\\Application\\brave.exe" "%*"', orphan = true, for = "windows" },
+    { run = '"brave" "$@"', orphan = true, for = "unix" },
+]
 open = [
 	{ run = 'xdg-open "$@"', desc = "Open" },
 ]
-# ...

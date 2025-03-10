@@ -4,11 +4,6 @@
 # Starship
 eval "$(starship init zsh)"
 
-# executing fastfetch on kitty startup
-if command -v fastfetch &> /dev/null; then
-    fastfetch --load-config ~/.config/fastfetch/config.jsonc
-fi
-
 # Set the directory we want to store zinit and plugins
 ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
 
@@ -147,6 +142,7 @@ alias vc='code' # gui code editor
 alias nv='nvim' # neovim
 alias lf=yazi
 alias vim=nvim
+alias open='xdg-open'
 
 # Directory navigation shortcuts
 alias ..='cd ..'
@@ -212,3 +208,8 @@ function lazyg() {
 	git push
 }
 [ "$(tty)" = "/dev/tty1" ] && exec Hyprland
+
+# executing fastfetch on kitty startup
+if command -v fastfetch &> /dev/null; then
+  fastfetch --load-config ~/.config/fastfetch/config.jsonc
+fi

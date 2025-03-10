@@ -117,8 +117,11 @@ delete_matching_configs() {
       "cliphist"
       "code"
       "curl"
+      "cmatrix"
       "discord"
+      "dnsmasq"
       "eza"
+      "edk2-ovmf"
       "fastfetch"
       "fd"
       "fzf"
@@ -128,6 +131,7 @@ delete_matching_configs() {
       "ghostty"
       "gvfs"
       "go"
+      "gparted"
       "hypridle"
       "hyprpicker"
       "hyprshot"
@@ -135,11 +139,13 @@ delete_matching_configs() {
       "htop"
       "imv"
       "inotify-tools"
+      "iptables-nft"
       "jq"
       "kitty"
       "less"
       "libnotify"
       "libreoffice-fresh"
+      "libvirt"
       "materia-gtk-theme"
       "neovim"
       "network-manager-applet"
@@ -152,6 +158,7 @@ delete_matching_configs() {
       "obsidian"
       "pavucontrol"
       "poppler"
+      "poltik-gnome"
       "pipewire"
       "pipewire-pulse"
       "pipewire-alsa"
@@ -160,6 +167,7 @@ delete_matching_configs() {
       "pywal"
       "pyprland"
       "qt6ct"
+      "qemu-desktop"
       "starship"
       "stow"
       "swww"
@@ -172,12 +180,15 @@ delete_matching_configs() {
       "tumbler"
       "tree"
       "tmux"
+      "timeshift"
       "udiskie"
       "unzip"
       "vlc"
+      "virt-manager"
       "waybar"
       "wofi"
       "wlogout"
+      "wine"
       "xorg-xhost"
       "yazi"
       "zoxide"
@@ -312,8 +323,17 @@ else
   systemctl --user enable brightnessctl
   systemctl --user start brightnessctl
 fi
+systemctl restart systemd-binfmt
+read -p "Do you enable virt-manager? (y/n): " -n 1 -r
+echo  # Add a newline after single-character input
+if [[ $REPLY =~ ^[Yy]$ ]]; then
+  sudo systemctl enable --now libvirtd.service
+  sudo systemctl enable --now virtlogd.service
+  sudo usermod -aG libvirt $(whoami)
+fi
 chmod +x ~/.config/hypr/scripts/*
 notify-send "Open Terminal with MOD+return" "Hello $USER,\nWelcome to your new Arch install\n"
+echo "Open Terminal with MOD+return" "Hello $USER,\nWelcome to your new Arch install\n"
 hyprctl reload
 echo "[WARNING] Install nerd-fonts package I didn't include it in the apps because it installs around 1GB of fonts in the system."
 echo '[WARNING] Now cd into nixwd-home and run nix run home-manager -- init --switch . for installing nix programs.' 
