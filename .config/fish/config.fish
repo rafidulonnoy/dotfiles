@@ -4,6 +4,10 @@ if status is-interactive
     starship init fish | source
 end
 
+if command -v fastfetch &> /dev/null 
+  fastfetch
+end
+
 # List Directory
 alias ls="lsd"
 alias l="ls -l"

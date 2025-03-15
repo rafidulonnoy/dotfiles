@@ -1,34 +1,25 @@
 # ohmyposh
-#eval "$(oh-my-posh init zsh --config ~/.config/ohmyposh/atomic_mod.omp.json)"
+eval "$(oh-my-posh init zsh --config ~/.config/ohmyposh/atomic_mod.omp.json)"
+
+# executing fastfetch on kitty startup
+if command -v fastfetch &> /dev/null; then
+  fastfetch --load-config ~/.config/fastfetch/config.jsonc
+fi
 
 # Starship
-eval "$(starship init zsh)"
+# eval "$(starship init zsh)"
 
 # Set the directory we want to store zinit and plugins
 ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
 
 # Download zinit, if it's not there yet
-# if [ ! -d "$ZINIT_HOME" ]; then
-#   mkdir -p "$(dirname $ZINIT_HOME)"
-#   git clone https://github.com/zdharma-continuum/zinit.git "$ZINIT_HOME"
-# fi
+if [ ! -d "$ZINIT_HOME" ]; then
+  mkdir -p "$(dirname $ZINIT_HOME)"
+  git clone https://github.com/zdharma-continuum/zinit.git "$ZINIT_HOME"
+fi
 
 # Source/Load zinit
 source "${ZINIT_HOME}/zinit.zsh"
-
-# Set the default editor
-export EDITOR=nvim
-export VISUAL=nvim
-export PATH="/usr/bin:/usr/local/bin:/usr/local/sbin:/usr/bin/core_perl:/usr/bin/site_perl:/usr/bin/vendor_perl:$HOME/.local/share/bin:$HOME/.local/share/zinit/polaris/bin:$HOME/.nix-profile/bin:/nix/var/nix/profiles/default/bin:$HOME/.nix-profile/bin:/nix/var/nix/profiles/default/bin:$HOME/.cargo/bin/kanata:$PATH"
-export MANPATH="/usr/share/man:$MANPATH"
-
-# Node Version Manager
-export NVM_DIR="$HOME/.nvm"
-# if !command -v nvm &> /dev/null; then
-#   curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.1/install.sh | bash
-# fi
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 # Add in zsh plugins
 zinit light zsh-users/zsh-syntax-highlighting
@@ -75,6 +66,20 @@ zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
 zstyle ':completion:*' menu no
 zstyle ':fzf-tab:complete:cd:*' fzf-preview 'ls --color $realpath'
 zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'ls --color $realpath'
+
+# Set the default editor
+export EDITOR=nvim
+export VISUAL=nvim
+export PATH="/usr/bin:/usr/local/bin:/usr/local/sbin:/usr/bin/core_perl:/usr/bin/site_perl:/usr/bin/vendor_perl:$HOME/.local/share/bin:$HOME/.local/share/zinit/polaris/bin:$HOME/.nix-profile/bin:/nix/var/nix/profiles/default/bin:$HOME/.nix-profile/bin:/nix/var/nix/profiles/default/bin:$HOME/.cargo/bin/kanata:$PATH"
+export MANPATH="/usr/share/man:$MANPATH"
+
+# Node Version Manager
+export NVM_DIR="$HOME/.nvm"
+if !command -v nvm &> /dev/null; then
+  curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.1/install.sh | bash
+fi
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 # In case a command is not found, try to find the package that has it
 function command_not_found_handler {
@@ -173,6 +178,10 @@ cd ()
 		builtin cd ~ && ls
 	fi
 }
+copy()
+{
+  cat $1 | wl-copy
+}
 # Extracts any archive(s) (if unp isn't installed)
 function extract() {
 	for archive in "$@"; do
@@ -208,8 +217,3 @@ function lazyg() {
 	git push
 }
 [ "$(tty)" = "/dev/tty1" ] && exec Hyprland
-
-# executing fastfetch on kitty startup
-if command -v fastfetch &> /dev/null; then
-  fastfetch --load-config ~/.config/fastfetch/config.jsonc
-fi
