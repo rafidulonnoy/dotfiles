@@ -178,6 +178,8 @@ cd ()
 		builtin cd ~ && ls
 	fi
 }
+
+# Copy the contents of a file to the clipboard
 copy()
 {
   cat $1 | wl-copy
