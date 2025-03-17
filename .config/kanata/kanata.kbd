@@ -23,12 +23,13 @@
   l (tap-hold $tap-time $hold-time l rctl)
   ; (tap-hold $tap-time $hold-time ; ralt)
   ralt esc
+  rsft tab
 )
 
 (deflayer base
- @caps @a @s @d @f @g_modifier _ @j @k @l @; _ @ralt _ 
+ @caps @a @s @d @f @g_modifier _ @j @k @l @; _ @ralt @rsft
 )
 
 (deflayer g_layer
-  _ _ _ _ _ _ left down up right _ bspc _ tab
+  _ _ _ _ _ _ left down up right _ bspc _ rsft
 )

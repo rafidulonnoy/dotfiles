@@ -90,7 +90,8 @@
             "always_enabled": true,
             "cache_duration": "none"
           },
-          "template": "❯ ",
+          "template": "\u279c ",
+          // "template": "❯ ",
           "foreground": "blue",
           "type": "status",
           "style": "plain",

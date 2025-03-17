@@ -70,8 +70,8 @@ disabled = false
 
 # Command Status
 [character]
-success_symbol = "[❯](blue)"
-error_symbol = "[❯](red)"
+success_symbol = "[➜](blue)"
+error_symbol = "[➜](red)"
 vimcmd_symbol = "[❮](green)"
 vimcmd_visual_symbol = '[❮](#FADA5E)'
 

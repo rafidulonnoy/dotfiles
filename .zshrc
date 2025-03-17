@@ -1,3 +1,6 @@
+if [ "$(tty)" = "/dev/tty1" ]; then
+  exec Hyprland
+fi
 # ohmyposh
 eval "$(oh-my-posh init zsh --config ~/.config/ohmyposh/atomic_mod.omp.json)"
 
@@ -26,11 +29,11 @@ zinit light zsh-users/zsh-syntax-highlighting
 zinit light zsh-users/zsh-completions
 zinit light zsh-users/zsh-autosuggestions
 zinit light Aloxaf/fzf-tab
-zinit light jeffreytse/zsh-vi-mode
+# zinit light jeffreytse/zsh-vi-mode
 
 # Only changing the escape key to `jk` in insert mode, we still
 # keep using the default keybindings `^[` in other modes
-ZVM_VI_INSERT_ESCAPE_BINDKEY=jk
+# ZVM_VI_INSERT_ESCAPE_BINDKEY=jk
 
 # Add in snippets
 zinit snippet OMZP::git
@@ -144,7 +147,7 @@ alias pa='$aurhelper -Ss' # list availabe package
 alias pc='$aurhelper -Sc' # remove unused cache
 alias po='$aurhelper -Qtdq | $aurhelper -Rns -' # remove unused packages, also try > $aurhelper -Qqd | $aurhelper -Rsu --print -
 alias vc='code' # gui code editor
-alias nv='nvim' # neovim
+alias n='nvim' # neovim
 alias lf=yazi
 alias vim=nvim
 alias open='xdg-open'
@@ -158,10 +161,6 @@ alias .5='cd ../../../../..'
 
 # Always mkdir a path (this doesn't inhibit functionality to make a single dir)
 alias mkdir='mkdir -p'
-
-
-#Display Pokemon
-#pokemon-colorscripts --no-title -s -r 1,3,6
 
 # Shell integrations
 eval "$(fzf --zsh)"
@@ -218,4 +217,3 @@ function lazyg() {
 	git commit -m "$1"
 	git push
 }
-[ "$(tty)" = "/dev/tty1" ] && exec Hyprland
