@@ -1,0 +1,76 @@
+{
+    "$schema": "https://github.com/fastfetch-cli/fastfetch/raw/dev/doc/json_schema.json",
+    "logo": {
+        "source": "~/.config/fastfetch/ascii/arch.txt",
+        "padding": {
+            "top": 2,
+            "right": 6
+        }
+    },
+    "display": {
+        "separator": " "
+    },
+    "modules": [
+	"break",
+	"break",
+	{
+            "type": "title",
+            "keyWidth": 10
+        },
+        "break",
+        {
+            "type": "os",
+            "key": " ",
+            "keyColor": "36",  // = color3
+        },
+        {
+            "type": "kernel",
+            "key": " ",
+            "keyColor": "36",
+        },
+        {
+            "type": "packages",
+            "format": "{} ",
+            "key": " ",
+            "keyColor": "36",  
+        },
+        {
+            "type": "shell",
+            "key": " ",
+            "keyColor": "36", 
+        },
+        {
+            "type": "terminal",
+            "key": " ",
+            "keyColor": "36", 
+        },
+        {
+            "type": "wm",
+            "key": " ",
+            "keyColor": "36", 
+        },
+        {
+            "type": "disk",
+            "key": " ",
+            "keyColor": "36"
+        },
+        {
+            "type": "uptime",
+            "key": " ",
+            "keyColor": "36", 
+        },
+        {
+             "type": "command",
+             "text": "birth_install=$(stat -c %W /); current=$(date +%s); days_difference=$(( (current - birth_install) / 86400 )); echo OS AGE $days_difference days",
+            "key": "󱦟 ",
+            "keyColor": "36",
+        },
+        {
+            "type": "media",
+            "key": "󰝚 ",
+            "keyColor": "36", 
+        },
+        "break",
+        "break",
+    ]
+}

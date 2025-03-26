@@ -6,7 +6,7 @@ eval "$(oh-my-posh init zsh --config ~/.config/ohmyposh/atomic_mod.omp.json)"
 
 # executing fastfetch on kitty startup
 if command -v fastfetch &> /dev/null; then
-  fastfetch --load-config ~/.config/fastfetch/config.jsonc
+  fastfetch --load-config ~/.config/fastfetch/arch.jsonc
 fi
 
 # Starship
@@ -148,9 +148,12 @@ alias pc='$aurhelper -Sc' # remove unused cache
 alias po='$aurhelper -Qtdq | $aurhelper -Rns -' # remove unused packages, also try > $aurhelper -Qqd | $aurhelper -Rsu --print -
 alias vc='code' # gui code editor
 alias n='nvim' # neovim
+alias date='date "+%A, %d %B %Y %I:%M:%S %p"'
 alias lf=yazi
 alias vim=nvim
 alias open='xdg-open'
+alias td='glow ~/obsidian/2-MainNotes/Todo.md' # todo list
+alias fastfetch='fastfetch --load-config ~/.config/fastfetch/arch.jsonc'
 
 # Directory navigation shortcuts
 alias ..='cd ..'

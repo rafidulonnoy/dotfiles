@@ -11,12 +11,6 @@
     min-height: 10px;
 }
 
-/* =============================== */
-
-@import "theme.css";
-
-/* =============================== */
-
 /* bar styling */
 window#waybar {
     background: transparent;
@@ -57,13 +51,15 @@ window#waybar {
 #tray,
 #window,
 #workspaces,
+#cusotm-date,
+#custom-endpoint,
 #custom-l_end,
 #custom-r_end,
 #custom-sl_end,
 #custom-sr_end,
 #custom-rl_end,
 #custom-rr_end {
-    background: @surface0;
+    background: rgba(22,25,37,1.0);
     color: @text;
     opacity: 1;
     margin: 2px 0px;
@@ -95,7 +91,7 @@ tooltip {
 
 #idle_inhibitor,
 #clock{
-  color:@marron;
+  color:@green;
 }
 
 #workspaces,
@@ -104,7 +100,7 @@ tooltip {
 }
 
 #workspaces button {
-    background-color: @surface3;
+    background-color: @surface0;
     color: @lavender;
     box-shadow: none;
 	  text-shadow: none;
@@ -129,7 +125,7 @@ tooltip {
 }
 
 #window{
-  color:@lavender;
+  color:@mauve;
 }
 
 #backlight{
@@ -143,6 +139,10 @@ tooltip {
 #custom-pacman{
     transition: all .3s ease;
     color:@green;
+}
+
+#bluetooth{
+    color:@mauve;
 }
 
 #tray {
@@ -219,13 +219,13 @@ to{
 }
 
 #custom-r_end {
-    border-radius: 0px 19px 19px 0px;
+    border-radius: 0px 6px 6px 0px;
     margin-right: 8px;
     padding-right: 0px;
 }
 
 #custom-l_end {
-    border-radius: 19px 0px 0px 19px;
+    border-radius: 6px 0px 0px 6px;
     margin-left: 8px;
     padding-left: 0px;
 }
