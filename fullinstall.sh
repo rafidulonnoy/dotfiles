@@ -134,6 +134,7 @@ delete_matching_configs() {
       "go"
       "glow"
       "gparted"
+      "grub-btrfs"
       "hypridle"
       "hyprpicker"
       "hyprshot"
@@ -151,6 +152,7 @@ delete_matching_configs() {
       "materia-gtk-theme"
       "neovim"
       "network-manager-applet"
+      "net-tools"
       "noto-fonts"
       "noto-fonts-cjk"
       "noto-fonts-emoji"
@@ -188,11 +190,14 @@ delete_matching_configs() {
       "tree"
       "tmux"
       "timeshift"
+      "timeshift-autosnap"
       "udiskie"
       "unzip"
       "vlc"
       "virt-manager"
       "waybar"
+      "whitesur-icon-theme"
+      "whitesur-gtk-theme"
       "wofi"
       "wlogout"
       "wine"
@@ -339,6 +344,7 @@ if [[ $REPLY =~ ^[Yy]$ ]]; then
   sudo usermod -aG libvirt $(whoami)
 fi
 chmod +x ~/.config/hypr/scripts/*
+systemctl enable --now cronie.service
 notify-send "Open Terminal with MOD+return" "Hello $USER,\nWelcome to your new Arch install\n"
 echo "Open Terminal with MOD+return" "Hello $USER,\nWelcome to your new Arch install\n"
 hyprctl reload
