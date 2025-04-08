@@ -22,204 +22,204 @@ delete_matching_configs() {
   # Get list of entries
   mapfile -t entries < <(find "$DOTFILES_DIR" -maxdepth 1 -mindepth 1 -exec basename {} \; 2>/dev/null)
 
-    # Show what will be deleted
-    echo "=== Files/Dirs to potentially delete ==="
+  # Show what will be deleted
+  echo "=== Files/Dirs to potentially delete ==="
+  for entry in "${entries[@]}"; do
+    target_entry="$TARGET_DIR/$entry"
+    if [[ -e "$target_entry" ]]; then
+      echo " - $target_entry"
+    fi
+  done
+  # Ask if user wants to back up files/folders
+  read -p "Do you want to back up these files/folders to trash? (y/n): " -n 1 -r
+  echo
+  if [[ $REPLY =~ ^[Yy]$ ]]; then
+    echo "Backing up to trash..."
     for entry in "${entries[@]}"; do
       target_entry="$TARGET_DIR/$entry"
       if [[ -e "$target_entry" ]]; then
-        echo " - $target_entry"
+        mv "$target_entry" "$TRASH_DIR/"
+        echo "Backed up: $target_entry"
       fi
     done
-    # Ask if user wants to back up files/folders
-    read -p "Do you want to back up these files/folders to trash? (y/n): " -n 1 -r
-    echo
-    if [[ $REPLY =~ ^[Yy]$ ]]; then
-      echo "Backing up to trash..."
-      for entry in "${entries[@]}"; do
-        target_entry="$TARGET_DIR/$entry"
-        if [[ -e "$target_entry" ]]; then
-          mv "$target_entry" "$TRASH_DIR/"
-          echo "Backed up: $target_entry"
-        fi
-      done
-      echo "Backup completed."
+    echo "Backup completed."
+  fi
+  # Confirm destruction
+  read -p "DANGER! This will PERMANENTLY delete matching files/dirs in $TARGET_DIR. Continue? (y/N): " -n 1 -r
+  echo
+  if [[ ! $REPLY =~ ^[Yy]$ ]]; then
+    echo "Aborted."
+    return 0  # Return without error
+  fi
+
+  # Delete operations
+  for entry in "${entries[@]}"; do
+    dotfile_entry="$DOTFILES_DIR/$entry"
+    target_entry="$TARGET_DIR/$entry"
+
+    # Handle directories
+    if [[ -d "$dotfile_entry" ]] && [[ -d "$target_entry" ]]; then
+      echo "Deleting directory: $target_entry"
+      rm -rf -- "$target_entry"
+
+      # Handle files
+    elif [[ -f "$dotfile_entry" ]] && [[ -f "$target_entry" ]]; then
+      echo "Deleting file: $target_entry"
+      rm -f -- "$target_entry"
     fi
-    # Confirm destruction
-    read -p "DANGER! This will PERMANENTLY delete matching files/dirs in $TARGET_DIR. Continue? (y/N): " -n 1 -r
-    echo
-    if [[ ! $REPLY =~ ^[Yy]$ ]]; then
-      echo "Aborted."
-      return 0  # Return without error
-    fi
+  done
 
-    # Delete operations
-    for entry in "${entries[@]}"; do
-      dotfile_entry="$DOTFILES_DIR/$entry"
-      target_entry="$TARGET_DIR/$entry"
-
-        # Handle directories
-        if [[ -d "$dotfile_entry" ]] && [[ -d "$target_entry" ]]; then
-          echo "Deleting directory: $target_entry"
-          rm -rf -- "$target_entry"
-
-        # Handle files
-      elif [[ -f "$dotfile_entry" ]] && [[ -f "$target_entry" ]]; then
-        echo "Deleting file: $target_entry"
-        rm -f -- "$target_entry"
-        fi
-      done
-
-      echo "Config cleanup completed."
-    }
-    cd
-    required_commands=("base-devel" "git")
-    for app in "${required_commands[@]}"; do
-      if pacman -Qi "$app" &> /dev/null; then
-        echo "[SKIPPED] $app is already installed."
-      else
-        echo "[INSTALLING] $app..."
-        if sudo pacman -S --needed --noconfirm "$app"; then
-          echo "[SUCCESS] $app installed!"
-        else
-          echo "[ERROR] Failed to install $app."
-        fi
-      fi
-    done
-    # installing paru
-    if command -v paru &> /dev/null; then
-      echo "[SKIPPED] Paru is installed. proceeding..."
+  echo "Config cleanup completed."
+}
+cd
+required_commands=("base-devel" "git")
+for app in "${required_commands[@]}"; do
+  if pacman -Qi "$app" &> /dev/null; then
+    echo "[SKIPPED] $app is already installed."
+  else
+    echo "[INSTALLING] $app..."
+    if sudo pacman -S --needed --noconfirm "$app"; then
+      echo "[SUCCESS] $app installed!"
     else
-      echo "[INSTALLING] Paru not installed. Installing paru..."
-      git clone https://aur.archlinux.org/paru.git ~/paru
-      cd ~/paru
-      makepkg -si --noconfirm
-      cd -
-      rm -rf ~/paru
+      echo "[ERROR] Failed to install $app."
     fi
-    # download all the wallpapers
-    wallpaper_dir="$HOME/wallpaper"
-    if [ -d "$wallpaper_dir" ]; then
-      echo "[SKIPPED] Wallpaper directory found."
+  fi
+done
+# installing paru
+if command -v paru &> /dev/null; then
+  echo "[SKIPPED] Paru is installed. proceeding..."
+else
+  echo "[INSTALLING] Paru not installed. Installing paru..."
+  git clone https://aur.archlinux.org/paru.git ~/paru
+  cd ~/paru
+  makepkg -si --noconfirm
+  cd -
+  rm -rf ~/paru
+fi
+# download all the wallpapers
+wallpaper_dir="$HOME/wallpaper"
+if [ -d "$wallpaper_dir" ]; then
+  echo "[SKIPPED] Wallpaper directory found."
+else
+  git clone https://github.com/rafidulonnoy/wallpaper.git ~/wallpaper
+fi
+# list of packages to install
+APPS=(
+  "7zip"
+  "bat"
+  "bibata-cursor-theme-bin"
+  "brightnessctl"
+  "blueman"
+  "bluez"
+  "btop"
+  "cava"
+  "chafa"
+  "cliphist"
+  "curl"
+  "cmatrix"
+  "discord"
+  "dnsmasq"
+  "eza"
+  "edk2-ovmf"
+  "efibootmgr"            # efi boot manager for grub
+  "fastfetch"
+  "fd"
+  "fzf"
+  "ffmpeg"
+  "flatpak"
+  "fish"
+  "grub-customizer"
+  "ghostty"
+  "gvfs"
+  "go"
+  "glow"
+  "gparted"
+  "grub-btrfs"
+  "hypridle"
+  "hyprpicker"
+  "hyprshot"
+  "hyprlock"
+  "htop"
+  "imv"
+  "inotify-tools"
+  "iptables-nft"
+  "jq"
+  "kitty"
+  "less"
+  "libnotify"
+  "libreoffice-fresh"
+  "libvirt"
+  "materia-gtk-theme"
+  "neovim"
+  "network-manager-applet"
+  "net-tools"
+  "noto-fonts"
+  "noto-fonts-cjk"
+  "noto-fonts-emoji"
+  "noto-fonts-extra"
+  "nwg-look"
+  "nushell"
+  "ncspot"
+  "obsidian"
+  "oh-my-posh-bin"
+  "pacman-contrib"
+  "papirus-icon-theme"
+  "pavucontrol"
+  "poppler"
+  "poltik-gnome"
+  "pipewire"
+  "pipewire-pulse"
+  "pipewire-alsa"
+  "pipewire-jack"
+  "pika-backup"
+  "pulsemixer"
+  "pywal"
+  "pyprland"
+  "qt6ct"
+  "qemu-desktop"
+  "starship"
+  "stow"
+  "swww"
+  "swaync"
+  "ttf-font-awesome"
+  "ttf-jetbrains-mono-nerd"
+  "ttf-dejavu"
+  "tldr"
+  "thunar"
+  "tumbler"
+  "tree"
+  "tmux"
+  "timeshift"
+  "timeshift-autosnap"
+  "udiskie"
+  "unzip"
+  "vlc"
+  "virt-manager"
+  "waybar"
+  "whitesur-icon-theme"
+  "whitesur-gtk-theme"
+  "wofi"
+  "wlogout"
+  "wine"
+  "xorg-xhost"
+  "yazi"
+  "zoxide"
+  "zsh"
+)
+# Install apps only if not already installed
+for app in "${APPS[@]}"; do
+  if paru -Qi "$app" &> /dev/null; then
+    echo "[SKIPPED] $app is already installed."
+  else
+    echo "[INSTALLING] $app..."
+    if paru -S --needed --noconfirm "$app"; then
+      echo "[SUCCESS] $app installed!"
     else
-      git clone https://github.com/rafidulonnoy/wallpaper.git ~/wallpaper
+      echo "[ERROR] Failed to install $app."
     fi
-    # list of packages to install
-    APPS=(
-      "7zip"
-      "bat"
-      "bibata-cursor-theme-bin"
-      "brightnessctl"
-      "blueman"
-      "bluez"
-      "btop"
-      "cava"
-      "chafa"
-      "cliphist"
-      "code"
-      "curl"
-      "cmatrix"
-      "discord"
-      "dnsmasq"
-      "eza"
-      "edk2-ovmf"
-      "fastfetch"
-      "fd"
-      "fzf"
-      "ffmpeg"
-      "flatpak"
-      "fish"
-      "grub-customizer"
-      "ghostty"
-      "gvfs"
-      "go"
-      "glow"
-      "gparted"
-      "grub-btrfs"
-      "hypridle"
-      "hyprpicker"
-      "hyprshot"
-      "hyprlock"
-      "htop"
-      "imv"
-      "inotify-tools"
-      "iptables-nft"
-      "jq"
-      "kitty"
-      "less"
-      "libnotify"
-      "libreoffice-fresh"
-      "libvirt"
-      "materia-gtk-theme"
-      "neovim"
-      "network-manager-applet"
-      "net-tools"
-      "noto-fonts"
-      "noto-fonts-cjk"
-      "noto-fonts-emoji"
-      "noto-fonts-extra"
-      "nwg-look"
-      "nushell"
-      "ncspot"
-      "obsidian"
-      "oh-my-posh-bin"
-      "pacman-contrib"
-      "papirus-icon-theme"
-      "pavucontrol"
-      "poppler"
-      "poltik-gnome"
-      "pipewire"
-      "pipewire-pulse"
-      "pipewire-alsa"
-      "pipewire-jack"
-      "pika-backup"
-      "pulsemixer"
-      "pywal"
-      "pyprland"
-      "qt6ct"
-      "qemu-desktop"
-      "starship"
-      "stow"
-      "swww"
-      "swaync"
-      "ttf-font-awesome"
-      "ttf-jetbrains-mono-nerd"
-      "ttf-dejavu"
-      "tldr"
-      "thunar"
-      "tumbler"
-      "tree"
-      "tmux"
-      "timeshift"
-      "timeshift-autosnap"
-      "udiskie"
-      "unzip"
-      "vlc"
-      "virt-manager"
-      "waybar"
-      "whitesur-icon-theme"
-      "whitesur-gtk-theme"
-      "wofi"
-      "wlogout"
-      "wine"
-      "xorg-xhost"
-      "yazi"
-      "zoxide"
-      "zsh"
-    )
-    # Install apps only if not already installed
-    for app in "${APPS[@]}"; do
-      if paru -Qi "$app" &> /dev/null; then
-        echo "[SKIPPED] $app is already installed."
-      else
-        echo "[INSTALLING] $app..."
-        if paru -S --needed --noconfirm "$app"; then
-          echo "[SUCCESS] $app installed!"
-        else
-          echo "[ERROR] Failed to install $app."
-        fi
-      fi
-    done
-    echo "[SUCCESS] All requested apps processed."
+  fi
+done
+echo "[SUCCESS] All requested apps processed."
 
 # check if swww is running
 if command -v swww &> /dev/null; then

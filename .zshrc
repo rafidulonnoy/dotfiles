@@ -1,13 +1,14 @@
 if [ "$(tty)" = "/dev/tty1" ]; then
   exec Hyprland
 fi
-# ohmyposh
-eval "$(oh-my-posh init zsh --config ~/.config/ohmyposh/atomic_mod.omp.json)"
 
 # executing fastfetch on kitty startup
 if command -v fastfetch &> /dev/null; then
   fastfetch --load-config ~/.config/fastfetch/arch.jsonc
 fi
+
+# ohmyposh
+eval "$(oh-my-posh init zsh --config ~/.config/ohmyposh/atomic_mod.omp.json)"
 
 # Starship
 # eval "$(starship init zsh)"
@@ -29,7 +30,7 @@ zinit light zsh-users/zsh-syntax-highlighting
 zinit light zsh-users/zsh-completions
 zinit light zsh-users/zsh-autosuggestions
 zinit light Aloxaf/fzf-tab
-# zinit light jeffreytse/zsh-vi-mode
+zinit light jeffreytse/zsh-vi-mode
 
 # Only changing the escape key to `jk` in insert mode, we still
 # keep using the default keybindings `^[` in other modes
@@ -38,7 +39,6 @@ zinit light Aloxaf/fzf-tab
 # Add in snippets
 zinit snippet OMZP::git
 zinit snippet OMZP::sudo
-zinit snippet OMZP::archlinux
 
 # Load completions
 autoload -Uz compinit && compinit
@@ -77,12 +77,13 @@ export PATH="/usr/bin:/usr/local/bin:/usr/local/sbin:/usr/bin/core_perl:/usr/bin
 export MANPATH="/usr/share/man:$MANPATH"
 
 # Node Version Manager
-export NVM_DIR="$HOME/.nvm"
-if !command -v nvm &> /dev/null; then
-  curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.1/install.sh | bash
-fi
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+# Uncomment it when needed
+# export NVM_DIR="$HOME/.nvm"
+# if !command -v nvm &> /dev/null; then
+#   curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.1/install.sh | bash
+# fi
+# [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+# [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 # In case a command is not found, try to find the package that has it
 function command_not_found_handler {
@@ -166,7 +167,7 @@ alias .5='cd ../../../../..'
 alias mkdir='mkdir -p'
 
 # Shell integrations
-eval "$(fzf --zsh)"
+# eval "$(fzf --zsh)"
 
 # zoxide
 eval "$(zoxide init zsh)"
