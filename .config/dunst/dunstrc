@@ -1,0 +1,63 @@
+[global]
+# Display
+follow = mouse
+width = 350
+height = (0, 300)
+origin = top-right
+offset = (35, 35)
+indicate_hidden = yes
+notification_limit = 5
+gap_size = 12
+padding = 12
+horizontal_padding = 20
+frame_width = 1
+sort = update
+
+# Progress bar
+progress_bar_frame_width = 0
+progress_bar_corner_radius = 3
+
+# Colors
+foreground = "#cdd1dc"
+frame_color = "#2d303c"
+highlight = "#2274d5, #82aad9"
+
+# Text
+font = Noto Sans Regular 10
+markup = full
+format = "<big><b>%s</b></big>\n%b"
+alignment = left
+vertical_alignment = center
+show_age_threshold = -1
+hide_duplicate_count = false
+
+# Icon
+icon_position = left
+min_icon_size = 32
+max_icon_size = 128
+icon_theme = "Tela-circle-dracula"
+icon_path = /home/wd/.icons/Tela-circle-dracula/16/actions:/home/wd/.icons/Tela-circle-dracula/16/apps:/home/wd/.icons/Tela-circle-dracula/16/devices:/home/wd/.icons/Tela-circle-dracula/16/mimetypes:/home/wd/.icons/Tela-circle-dracula/16/panel:/home/wd/.icons/Tela-circle-dracula/16/places:/home/wd/.icons/Tela-circle-dracula/16/status
+icon_corner_radius = 4
+
+# Misc/Advanced
+dmenu = wofi --show drun --prompt 'Open with'
+corner_radius = 10
+
+# Mouse
+mouse_left_click = close_current
+mouse_middle_click = do_action, close_current
+mouse_right_click = close_all
+
+[urgency_low]
+background = "#383c4af0"
+timeout = 3
+
+[urgency_normal]
+background = "#383c4af0"
+timeout = 1
+
+[urgency_critical]
+background = "#9b4d4bf0"
+frame_color = "#ab6d6b"
+highlight = "#e31e1b, #e37371"
+timeout = 0
