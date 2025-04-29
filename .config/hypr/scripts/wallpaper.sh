@@ -33,13 +33,13 @@ main() {
     wal -i "$selected_wallpaper" -n
 
     # Reload SwayNotificationCenter CSS (if you use themed notifications)
-    swaync-client --reload-css
+    # swaync-client --reload-css
 
     # Update the current Kitty theme with pywal colors
     cat ~/.cache/wal/colors-kitty.conf > ~/.config/kitty/current-theme.conf
 
     # Update Firefox theme (if using Pywalfox)
-    pywalfox update
+    # pywalfox update
 
     # Extract two colors from the generated `colors.sh` file for Cava visualizer
     color1=$(awk 'match($0, /color2=\47(.*)\47/,a) { print a[1] }' ~/.cache/wal/colors.sh)

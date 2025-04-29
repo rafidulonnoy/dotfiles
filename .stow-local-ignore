@@ -7,4 +7,5 @@ fullinstall.sh
 README.md
 LICENSE
 /.config/nvim_new
+/.config/swaync
 kanata.service
