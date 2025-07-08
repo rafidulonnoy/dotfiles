@@ -4,8 +4,8 @@
   "reload_style_on_change": true,
   "modules-left": [
     "custom/l_end",
-    // "custom/notification",
-    // "custom/endpoint",
+    "custom/notification",
+    "custom/endpoint",
     "cpu",
     "custom/endpoint",
     "temperature",
@@ -54,7 +54,7 @@
   "custom/notification": {
     "tooltip": false,
     "format": " ",
-    "on-click": "swaync-client -t -sw",
+    "on-click": "wofi --show drun -n",
     "escape": true
   },
   "cpu": {
@@ -126,8 +126,8 @@
   },
   "clock": {
     "interval": 1,
-    "format": "{:%I:%M:%S%p | %a %d %b}",
-    "format-alt": " {:%I:%M:%S%p | 󰃭 %A %d %B %Y}",
+    "format": "{:%I:%M:%S%p}",
+    "format-alt": " {:%I:%M:%S%p | 󰃭 %a %d %b}",
     "tooltip": true,
     "tooltip-format": "<span>{calendar}</span>",
     "calendar": {

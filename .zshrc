@@ -3,9 +3,9 @@ if [ "$(tty)" = "/dev/tty1" ]; then
 fi
 
 # executing fastfetch on kitty startup
-if command -v fastfetch &> /dev/null; then
-  fastfetch --load-config ~/.config/fastfetch/arch.jsonc
-fi
+# if command -v fastfetch &> /dev/null; then
+#   fastfetch --load-config ~/.config/fastfetch/arch.jsonc
+# fi
 
 # ohmyposh
 eval "$(oh-my-posh init zsh --config ~/.config/ohmyposh/atomic_mod.omp.json)"
@@ -78,12 +78,12 @@ export MANPATH="/usr/share/man:$MANPATH"
 
 # Node Version Manager
 # Uncomment it when needed
-# export NVM_DIR="$HOME/.nvm"
+export NVM_DIR="$HOME/.nvm"
 # if !command -v nvm &> /dev/null; then
 #   curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.1/install.sh | bash
 # fi
-# [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-# [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 # In case a command is not found, try to find the package that has it
 function command_not_found_handler {

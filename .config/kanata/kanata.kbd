@@ -4,7 +4,8 @@
 )
 
 (defsrc
- caps esc a s d f g h j k l ; spc '
+ ;;caps esc a s d f g h j k l ; spc '
+ caps esc 2 h j k l spc '
 )
 (defvar
   tap-time 200
@@ -12,25 +13,27 @@
 )
 
 (defalias
-  caps esc
-  esc caps
-  a (tap-hold $tap-time $hold-time a lalt)
-  s (tap-hold $tap-time $hold-time s lmet)
-  d (tap-hold $tap-time $hold-time d lsft)
-  f (tap-hold $tap-time $hold-time f lctl)
-  g_modifier (tap-hold-press $tap-time $hold-time g (layer-toggle g_layer))
-  j (tap-hold $tap-time $hold-time j rctl)
-  k (tap-hold $tap-time $hold-time k rsft)
-  l (tap-hold $tap-time $hold-time l rmet)
-  ; (tap-hold $tap-time $hold-time ; ralt)
-  ralt esc
-  lalt tab
+  caps (tap-hold $tap-time $hold-time esc lctl)
+  ;;esc caps
+  ;;a (tap-hold $tap-time $hold-time a lalt)
+  ;;s (tap-hold $tap-time $hold-time s lmet)
+  ;;d (tap-hold $tap-time $hold-time d lsft)
+  ;;f (tap-hold $tap-time $hold-time f lctl)
+  mod (tap-hold-press $tap-time $hold-time 2 (layer-toggle mod_layer))
+  ;;j (tap-hold $tap-time $hold-time j rctl)
+  ;;k (tap-hold $tap-time $hold-time k rsft)
+  ;;l (tap-hold $tap-time $hold-time l rmet)
+  ;;; (tap-hold $tap-time $hold-time ; ralt)
+  ;;ralt esc
+  ;;lalt tab
 )
 
 (deflayer base
- @caps @esc @a @s @d @f @g_modifier _ @j @k @l @; _ _
+ ;;@caps @esc @a @s @d @f @mod _ @j @k @l @; _ _
+ @caps _ @mod _ _ _ _ _ _
 )
 
-(deflayer g_layer
-  _ _ _ _ _ _ _ left down up right _ bspc `
+(deflayer mod_layer
+  ;;_ _ _ _ _ _ _ left down up right _ bspc `
+  _ _ _ left down up right bspc `
 )
