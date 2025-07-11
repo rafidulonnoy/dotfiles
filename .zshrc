@@ -76,9 +76,8 @@ export VISUAL=nvim
 export PATH="/usr/bin:/usr/local/bin:/usr/local/sbin:/usr/bin/core_perl:/usr/bin/site_perl:/usr/bin/vendor_perl:$HOME/.local/share/bin:$HOME/.local/share/zinit/polaris/bin:$HOME/.nix-profile/bin:/nix/var/nix/profiles/default/bin:$HOME/.nix-profile/bin:/nix/var/nix/profiles/default/bin:$HOME/.cargo/bin/kanata:$PATH"
 export MANPATH="/usr/share/man:$MANPATH"
 
-# Node Version Manager
-# Uncomment it when needed
-export NVM_DIR="$HOME/.nvm"
+# Node Version Manager Uncomment it when needed
+ export NVM_DIR="$HOME/.nvm"
 # if !command -v nvm &> /dev/null; then
 #   curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.1/install.sh | bash
 # fi
@@ -144,7 +143,7 @@ alias lt='eza --icons=auto --tree' # list folder as tree
 alias un='$aurhelper -Rns' # uninstall package
 alias up='$aurhelper -Syu' # update system/package/aur
 alias pl='$aurhelper -Qs' # list installed package
-alias pa='$aurhelper -Ss' # list availabe package
+# alias pa='$aurhelper -Ss' # list availabe package
 alias pc='$aurhelper -Sc' # remove unused cache
 alias po='$aurhelper -Qtdq | $aurhelper -Rns -' # remove unused packages, also try > $aurhelper -Qqd | $aurhelper -Rsu --print -
 alias vc='code' # gui code editor
@@ -155,6 +154,7 @@ alias vim=nvim
 alias open='xdg-open'
 alias td='glow ~/obsidian/2-MainNotes/Todo.md' # todo list
 alias fastfetch='fastfetch --load-config ~/.config/fastfetch/arch.jsonc'
+pa() { $aurhelper -Ss --color=always "$@" | awk '/^[^[:space:]]/{if(b)a[i++]=b;b=$0;next}{b=b ORS $0}END{if(b)a[i++]=b;while(i--)print a[i]}'; }
 
 # Directory navigation shortcuts
 alias ..='cd ..'

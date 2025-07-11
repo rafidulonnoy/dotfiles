@@ -116,7 +116,7 @@ tooltip {
     padding: 0rem 0.1rem;
     margin:0.2rem 0.2rem;
     animation: ws_active 20s ease-in-out 1;
-    transition: all 0.4s cubic-bezier(.55,-0.68,.48,1.682);
+    transition: all 0.05s cubic-bezier(.55,-0.68,.48,1.682);
 }
 
 #workspaces button:hover {
