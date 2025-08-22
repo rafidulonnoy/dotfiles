@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 ; thunar GtkAccelMap rc-file         -*- scheme -*-
+=======
+; Thunar GtkAccelMap rc-file         -*- scheme -*-
+>>>>>>> 0a7fc2c (final push before windows)
 ; this file is an automated accelerator map dump
 ;
 ; (gtk_accel_path "<Actions>/ThunarStandardView/sort-by-type" "")

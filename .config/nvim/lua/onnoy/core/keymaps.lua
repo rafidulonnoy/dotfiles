@@ -30,7 +30,11 @@ keymap.set("n", "<leader>sx", "<cmd>close<CR>", { desc = "Close current split" }
 -- keymap.set("n", "<leader>tf", "<cmd>tabnew %<CR>", { desc = "Open current buffer in new tab" }) --  move current buffer to new tab
 
 -- Terminal mode
+<<<<<<< HEAD
 keymap.set("t", "<Esc><Esc>", "<C-\\><C-n>", { desc = "Exit terminal mode" })
+=======
+keymap.set("t", "<Esc>", "<C-\\><C-n>", { desc = "Exit terminal mode" })
+>>>>>>> 0a7fc2c (final push before windows)
 keymap.set({ "n", "v" }, "<leader>\\", "<cmd>terminal<CR>", { desc = "Open terminal" })
 keymap.set({ "n", "v" }, "<leader>t", "<cmd>Floaterminal<CR>", { desc = "Open toggle terminal" })
 

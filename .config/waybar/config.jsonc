@@ -126,7 +126,11 @@
   },
   "clock": {
     "interval": 1,
+<<<<<<< HEAD
     "format": "{:%I:%M:%S%p}",
+=======
+    "format": "{:%a %I:%M %p}",
+>>>>>>> 0a7fc2c (final push before windows)
     "format-alt": " {:%I:%M:%S%p | 󰃭 %a %d %b}",
     "tooltip": true,
     "tooltip-format": "<span>{calendar}</span>",
@@ -255,7 +259,11 @@
     "format": " {}",
     "rotate": 0,
     "exec": "echo ; echo  logout",
+<<<<<<< HEAD
     "on-click": "wlogout -b 2 --layout $HOME/.config/wlogout/layout_2 --css $HOME/.config/wlogout/style_2.css",
+=======
+    "on-click": "wlogout -b 6 --layout $HOME/.config/wlogout/layout_1 --css $HOME/.config/wlogout/style_1.css",
+>>>>>>> 0a7fc2c (final push before windows)
     "interval" : 86400, // once every day
     "tooltip": true
   },
