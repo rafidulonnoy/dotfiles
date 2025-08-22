@@ -4,11 +4,7 @@ return {
 		vim.keymap.set("n", "<leader>zz", function()
 			require("zen-mode").setup({
 				plugins = {
-<<<<<<< HEAD
-          twilight = {enabled = false},
-=======
           twilight = {enabled = true},
->>>>>>> 0a7fc2c (final push before windows)
           tmux = {enabled = false},
         },
 				window = {
@@ -26,13 +22,10 @@ return {
 
 		vim.keymap.set("n", "<leader>zZ", function()
 			require("zen-mode").setup({
-<<<<<<< HEAD
-=======
 				plugins = {
           twilight = {enabled = true},
           tmux = {enabled = false},
         },
->>>>>>> 0a7fc2c (final push before windows)
 				window = {
 					width = 80,
 					options = {},
