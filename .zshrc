@@ -49,6 +49,7 @@ zinit cdreplay -q
 bindkey -e
 bindkey '^p' history-search-backward
 bindkey '^n' history-search-forward
+bindkey '^H' backword-kill-word
 
 # History
 HISTSIZE=10000
@@ -73,7 +74,7 @@ zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'ls --color $realpath'
 # Set the default editor
 export EDITOR=nvim
 export VISUAL=nvim
-export PATH="/usr/bin:/usr/local/bin:/usr/local/sbin:/usr/bin/core_perl:/usr/bin/site_perl:/usr/bin/vendor_perl:$HOME/.local/share/bin:$HOME/.local/share/zinit/polaris/bin:$HOME/.nix-profile/bin:/nix/var/nix/profiles/default/bin:$HOME/.nix-profile/bin:/nix/var/nix/profiles/default/bin:$HOME/.cargo/bin/kanata:$PATH"
+export PATH="/usr/bin:/usr/local/bin:/usr/local/sbin:$HOME/.local/share/bin:$HOME/.local/share/zinit/polaris/bin:$HOME/.nix-profile/bin:/nix/var/nix/profiles/default/bin:$HOME/.cargo/bin:$HOME/go/bin:$PATH"
 export MANPATH="/usr/share/man:$MANPATH"
 
 # Node Version Manager Uncomment it when needed
@@ -153,7 +154,7 @@ alias lf=yazi
 alias vim=nvim
 alias open='xdg-open'
 alias td='glow ~/obsidian/2-MainNotes/Todo.md' # todo list
-alias fastfetch='fastfetch --load-config ~/.config/fastfetch/arch.jsonc'
+# alias fastfetch='fastfetch --load-config ~/.config/fastfetch/arch.jsonc'
 pa() { $aurhelper -Ss --color=always "$@" | awk '/^[^[:space:]]/{if(b)a[i++]=b;b=$0;next}{b=b ORS $0}END{if(b)a[i++]=b;while(i--)print a[i]}'; }
 
 # Directory navigation shortcuts

@@ -74,24 +74,17 @@ tooltip {
 }
 
 #custom-notification {
-  color:@yellow;
+  color:@red;
   padding: 0px 0px;
   transition: all .3s ease;
 }
 
 #cpu,
 #memory,
-#temperature{
-  color:@blue;
-}
-
-#disk {
-  color: @teal;
-}
-
-#idle_inhibitor,
-#clock{
-  color:@green;
+#temperature,
+#disk,
+#bluetooth{
+  color:@lavender;
 }
 
 #workspaces,
@@ -128,21 +121,23 @@ tooltip {
   color:@mauve;
 }
 
+#idle_inhibitor,
+#clock{
+  color:@green;
+}
+
 #backlight{
   color:@flamingo;
 }
 
-#pulseaudio{
-  color: @mauve;
+#network,
+#pulseaudio,
+#custom-pacman{
+  color: @lavender;
 }
 
 #custom-pacman{
     transition: all .3s ease;
-    color:@green;
-}
-
-#bluetooth{
-    color:@mauve;
 }
 
 #tray {
@@ -215,7 +210,7 @@ to{
 }
 
 #custom-power{
-  color: @peach;
+  color: @red;
 }
 
 #custom-r_end {

@@ -16,6 +16,7 @@ return {
 		-- enable mason and configure icons
 		mason.setup({
 			ui = {
+        border = "rounded",
 				icons = {
 					package_installed = "✓",
 					package_pending = "➜",
@@ -35,6 +36,7 @@ return {
 				"clangd",
 				"gopls",
 			},
+      automatic_installation = true,
 		})
 
 		mason_tool_installer.setup({
@@ -49,6 +51,8 @@ return {
 				"flake8",
 				"eslint_d",
 			},
+      auto_update = true,
+      run_on_start = true,
 		})
 	end,
 }
