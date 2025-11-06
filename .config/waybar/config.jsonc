@@ -3,15 +3,20 @@
   "position": "top",
   "reload_style_on_change": true,
   "modules-left": [
+    "custom/arch",
     "custom/l_end",
-    "custom/notification",
-    "custom/endpoint",
-    "cpu",
-    "custom/endpoint",
     "memory",
-    "custom/endpoint",
+    "custom/r_end",
+    "custom/l_end",
+    "cpu",
+    "custom/r_end",
+    "custom/l_end",
+    "temperature",
+    "custom/r_end",
+    "custom/l_end",
     "disk",
-    "custom/endpoint",
+    "custom/r_end",
+    "custom/l_end",
     "bluetooth",
     "custom/r_end",
     "custom/l_end",
@@ -28,41 +33,55 @@
   ],
   "modules-right": [
     "custom/padd",
-    "custom/l_end",
+    // "custom/l_end",
     "backlight",
+    // "custom/r_end",
+    "custom/l_end",
     "network",
-    "custom/endpoint",
+    "custom/r_end",
+    "custom/l_end",
     "pulseaudio",
-    "custom/endpoint",
-    /*"pulseaudio#microphone",*/
+    "custom/r_end",
+    // "pulseaudio#mic",
+    "custom/l_end",
     "custom/pacman",
     "custom/r_end",
     "custom/l_end",
     "tray",
+    "custom/r_end",
+    // "custom/l_end",
     "battery",
-    "custom/r_end",
-    "custom/l_end",
+    // "custom/r_end",
     "custom/power",
-    "custom/r_end",
   ],
 
-  "custom/notification": {
+  "custom/arch": {
     "tooltip": false,
-    "format": " ",
+    "format": "<span size='11pt'> </span>",
     "on-click": "wofi --show drun -n",
     "escape": true
   },
   "cpu": {
     "interval": 2,
-    "format": "󰍛 {usage}%",
+    "format": "<span color='#f5e0dc' size='11pt'>󰍛</span> {usage}%",
     "rotate": 0,
-    "format-alt": "{icon0}{icon1}{icon2}{icon3}",
-    "format-icons": ["▁", "▂", "▃", "▄", "▅", "▆", "▇", "█"]
+    "format-alt": "{icon0}{icon1}{icon2}{icon3}{icon4}{icon4}",
+    "format-icons": [
+      "<span color='#8ec07c'>▁</span>", // green
+      "<span color='#458588'>▂</span>", // blue
+      "<span color='#f8f8f8'>▃</span>", // white
+      "<span color='#f8f8f8'>▄</span>", // white
+      "<span color='#d79921'>▅</span>", // yellow
+      "<span color='#d79921'>▆</span>", // yellow
+      "<span color='#fe8019'>▇</span>", // orange
+      "<span color='#cc241d'>█</span>" // red
+    ],
   },
   "temperature": {
     "critical-threshold": 80,
-    "format": " {}°C",
+    "format": "<span color='#f38ba8' size='11pt'></span> {temperatureC}°C",
     "rotate": 0,
+    "hwmon-path": ["/sys/class/hwmon/hwmon2/temp1_input"],
     "interval": 5, // once every 5 seconds
     "tooltip": true
   },
@@ -73,18 +92,18 @@
       "m": 30, // medium
     },
     "interval": 30,
-    "format": "󰾆 {used}GB",
+    "format": "<span color='#a6e3a1' size='11pt'>󰾆</span> {percentage}%",
     "rotate": 0,
-    "format-m": "󰾅 {used}GB",
-    "format-h": "󰓅 {used}GB",
-    "format-c": " {used}GB",
-    "format-alt": "󰾆 {percentage}%",
+    "format-m": "<span color='#f9e2af' size='11pt'>󰾅</span> {percentage}%",
+    "format-h": "<span color='#eba0ac' size='11pt'>󰓅</span> {percentage}%",
+    "format-c": "<span color='#f38ba8'></span> {percentage}%",
+    "format-alt": "󰾆 {used}GB",
     "max-length": 10,
     "tooltip": true,
     "tooltip-format": "󰾆 {percentage}%\n {used:0.1f}GB/{total:0.1f}GB"
   },
   "disk": {
-    "format": " {percentage_used}%",
+    "format": "<span color='#8ec07c' size='11pt'></span> {percentage_used}%",
     "tooltip": true,
     "on-click": "kitty --start-as=fullscreen --title all_is_kitty sh -c 'btop'",
     "interval": 10
@@ -98,15 +117,16 @@
   //     }
   // },
   "bluetooth": {
-    "format": " {status}",
-    "format-disabled": " {status}",
+    "format": "<span color='#a6e3a1' size='11pt'>󰂯 </span>{status}",
+    "format-disabled": "<span color='#a6e3a1' size='11pt'> </span>{status}",
     "format-connected": "{num_connections}",
     "tooltip-format": "{device_alias}",
-    "format-connected-battery": " {device_battery_percentage}%",
+    "format-connected-battery": "<span color='#a6e3a1' size='11pt'>󰂱 </span>{device_battery_percentage}%",
     "tooltip-format-enumerate-connected": "{device_alias}",
     "on-click": "blueman-manager",
     "interval": 60
   },
+
   "hyprland/workspaces": {
     "disable-scroll": true,
     "rotate": 0,
@@ -121,8 +141,8 @@
   },
   "clock": {
     "interval": 1,
-    "format": "{:%a %I:%M %p}",
-    "format-alt": " {:%I:%M:%S%p | 󰃭 %a %d %b}",
+    "format": "<span color='#cba6f7' size='11pt'>󰃭 </span>{:%a %I:%M %p}",
+    "format-alt": "<span color='#cba6f7' size='11pt'> </span>{:%I:%M:%S%p | <span color='#cba6f7' size='11pt'>󰃭 </span>%a %d %b}",
     "tooltip": true,
     "tooltip-format": "<span>{calendar}</span>",
     "calendar": {
@@ -133,7 +153,7 @@
       "format": {
         "months": "<span color='#ffead3'><b>{}</b></span>",
         "weekdays": "<span color='#ffcc66'><b>{}</b></span>",
-        "today": "<span color='#ff6699'><b><u>{}</u></b></span>"
+        "today": "<span color='#ff6699'><b>{}</b></span>"
       }
     },
     "actions": {
@@ -144,22 +164,23 @@
       "on-scroll-down": "shift_down"
     }
   },
-  // "hyprland/window": {
-  //   "format": "{}",
-  //   "rotate": 0,
-  //   "separate-outputs": true,
-  //   "rewrite": {
-  //     "wd@heh:(.*)": "$1 ",
-  //     "(.*) — Mozilla Firefox": "$1 󰈹",
-  //     "(.*)Mozilla Firefox": "Firefox 󰈹",
-  //     "(.*) - Visual Studio Code": "$1 󰨞",
-  //     "(.*)Visual Studio Code": "Code 󰨞",
-  //     "(.*) — Dolphin": "$1 󰉋",
-  //     "(.*)Spotify": "Spotify 󰓇",
-  //     "(.*)Steam": "Steam 󰓓"
-  //   },
-  //   "max-length": 50
-  // },
+  "hyprland/window": {
+    "format": "{class}",
+    "rotate": 0,
+    "separate-outputs": true,
+    "icon": true,
+    "rewrite": {
+      "wd@heh:(.*)": "$1 ",
+      "(.*) — Mozilla Firefox": "$1 󰈹",
+      "(.*)Mozilla Firefox": "Firefox 󰈹",
+      "(.*) - Visual Studio Code": "$1 󰨞",
+      "(.*)Visual Studio Code": "Code 󰨞",
+      "(.*) — Dolphin": "$1 󰉋",
+      "(.*)Spotify": "Spotify 󰓇",
+      "(.*)Steam": "Steam 󰓓"
+    },
+    "max-length": 50
+  },
   "backlight": {
     "device": "intel_backlight",
     "rotate": 0,
@@ -172,9 +193,9 @@
   "network": {
     "tooltip": true,
     // "format-wifi": "<span foreground='#b4befe'> {bandwidthDownBytes}</span> <span foreground='#f9e2af'> {bandwidthUpBytes}</span>",
-    "format-wifi": " {bandwidthDownBytes}  {bandwidthUpBytes}",
+    "format-wifi": "<span color='#a6e3a1' size='11pt'> </span>{bandwidthDownBytes} <span color='#eba0ac' size='11pt'> </span>{bandwidthUpBytes}",
     "rotate": 0,
-    "format-ethernet": " {bandwidthDownBytes}  {bandwidthUpBytes}",
+    "format-ethernet": "<span color='#a6e3a1' size='11pt'> </span>{bandwidthDownBytes} <span color='#eba0ac' size='11pt'> </span>{bandwidthUpBytes}",
     "tooltip-format": "Network: <big><b>{essid}</b></big>\nSignal strength: <b>{signaldBm}dBm ({signalStrength}%)</b>\nFrequency: <b>{frequency}MHz</b>\nInterface: <b>{ifname}</b>\nIP: <b>{ipaddr}/{cidr}</b>\nGateway: <b>{gwaddr}</b>\nNetmask: <b>{netmask}</b>",
     "format-linked": "󰈀 {ifname} (No IP)",
     "format-disconnected": "󰖪 ",
@@ -184,8 +205,8 @@
     "on-click": "nm-connection-editor"
   },
   "pulseaudio": {
-    "format": "{icon} {volume}%", // {format_source}
-    "format-bluetooth": "{icon} {volume}%", // {format_source}
+    "format": "<span color='#fab387' size='11pt'>{icon}</span> {volume}%", // {format_source}
+    "format-bluetooth": "<span color='#fab387' size='11pt'>{icon}</span> {volume}%", // {format_source}
     "format-bluetooth-muted": " ", // {format_source}
     "format-muted": " ", // {format_source}
     "format-source": "{volume}%",
@@ -198,6 +219,7 @@
     "tooltip-format": "{icon} {desc} // {volume}%",
     "format-icons": {
       "headphone": "",
+      "bluetooth": "",
       "hands-free": "",
       "headset": "",
       "phone": "",
@@ -207,15 +229,15 @@
     }
   },
 
-  // "pulseaudio#microphone": {
-  //     "format": "{format_source}",
-  //     "rotate": 0,
-  //     "format-source": "",
-  //     "format-source-muted": "",
-  //     "on-click": "pavucontrol -t 4",
-  //     "tooltip-format": "{format_source} {source_desc} // {source_volume}%",
-  //     "scroll-step": 5
-  // },
+  "pulseaudio#mic": {
+      "format": "{format_source} {source_volume}%",
+      "rotate": 0,
+      "format-source": "",
+      "format-source-muted": "",
+      "on-click": "pavucontrol -t 4",
+      "tooltip-format": "{format_source} {source_desc} // {source_volume}%",
+      "scroll-step": 5
+  },
   "battery": {
     "states": {
       "good": 95,
@@ -230,7 +252,7 @@
     "format-icons": ["󰂎", "󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"]
   },
   "custom/pacman": {
-    "format": "󰮯 {}",
+    "format": "<span color='#f9e2af' size='11pt'>󰮯 </span>{}",
     "interval": 30,   
     "exec": "checkupdates | wc -l",
     "exec-if": "exit 0",
@@ -243,7 +265,7 @@
     "tooltip": false
   },
   "tray": {
-    "icon-size": 14,
+    "icon-size": 16,
     "rotate": 0,
     "spacing": 5
   },

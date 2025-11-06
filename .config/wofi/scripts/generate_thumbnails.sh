@@ -1,6 +1,6 @@
 #!/bin/bash
 # Directories (adjust as needed)
-WALLPAPER_DIR="$HOME/wallpaper"
+WALLPAPER_DIR="$HOME/wallpapers"
 THUMB_DIR="$HOME/.cache/wofi-thumbs"
 THUMB_SIZE="600x300"  # You can change this to your desired thumbnail dimensions
 

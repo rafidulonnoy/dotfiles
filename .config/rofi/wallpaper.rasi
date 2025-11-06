@@ -1,0 +1,78 @@
+* {
+    font: "JetBrainsMono Nerd Font 13";
+    background-color: #2e3440;
+    text-color: #eceff4;
+}
+
+/* Main window settings */
+window {
+    padding: 0.5em;                /* Padding around the list */
+    background-color: @background-color;
+}
+
+/* Pack only the listview in the mainbox (no prompt) */
+mainbox {
+    /* Override default children to exclude inputbar for a clean grid */
+    children: [ listview ];
+}
+
+/* Listview: configure as 4-column grid */
+listview {
+    /* 4 columns per row for grid of wallpapers:contentReference[oaicite:5]{index=5} */
+    columns: 4;
+    /* Keep exactly 4 columns even if fewer items are visible:contentReference[oaicite:6]{index=6} */
+    fixed-columns: true;
+    /* Space between items for visual separation:contentReference[oaicite:7]{index=7} */
+    spacing: 0.5em;
+    /* Use horizontal layout (row-first fill, like dmenu) */
+    layout: horizontal;
+}
+
+/* Each element (wallpaper entry) */
+element {
+    /* Stack icon above text (vertical orientation):contentReference[oaicite:8]{index=8} */
+    orientation: vertical;
+    padding: 0.3em;       /* Internal padding around icon/text */
+    border-radius: 0.4em; /* Rounded corners for a clean look */
+    /* Background color for entries */
+    background-color: #3b4252;
+}
+element-selected {
+    /* Highlight color for selected entry */
+    background-color: #4c566a;
+}
+
+/* Thumbnail icon for each entry */
+element-icon {
+    /* Fixed thumbnail size (8em) for consistency */
+    size: 8em;
+    /* Center the icon inside the element box */
+    horizontal-align: 0.5;
+    vertical-align: 0.5;
+}
+
+/* Optional text label below each icon */
+element-text {
+    /* Center the text */
+    horizontal-align: 0.5;
+    padding-top: 0.2em;
+    /* Wrap or truncate as needed (ellipsis behavior) */
+    /* text-ellipsis: true;  # Uncomment if supported */
+}
+
+/* Preview pane: when PREVIEW is enabled (e.g. rofi-previewer), show icon-current-entry */
+@media (enabled: env(PREVIEW,false)) {
+    /* The preview widget will expand to fill remaining space */
+    icon-current-entry {
+        expand: true;
+        size: 80%;
+    }
+    /* Split layout: listview on left, preview icon on right */
+    listview-split {
+        children: [ listview, icon-current-entry ];
+    }
+    /* Ensure 4 columns still used in split mode */
+    listview {
+        columns: 4;
+    }
+}

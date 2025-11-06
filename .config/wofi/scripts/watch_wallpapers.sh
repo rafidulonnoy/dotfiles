@@ -1,5 +1,5 @@
 #!/bin/bash
-WALLPAPER_DIR="$HOME/wallpaper"
+WALLPAPER_DIR="$HOME/wallpapers"
 THUMB_DIR="$HOME/.cache/wofi-thumbs"
 THUMB_SIZE="300x300"
 
