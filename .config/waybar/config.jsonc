@@ -82,7 +82,7 @@
     "format": "<span color='#f38ba8' size='11pt'></span> {temperatureC}°C",
     "rotate": 0,
     "hwmon-path": ["/sys/class/hwmon/hwmon2/temp1_input"],
-    "interval": 5, // once every 5 seconds
+    "interval": 1, // once every 5 seconds
     "tooltip": true
   },
   "memory": {
@@ -91,7 +91,7 @@
       "h": 60, // high
       "m": 30, // medium
     },
-    "interval": 30,
+    "interval": 3,
     "format": "<span color='#a6e3a1' size='11pt'>󰾆</span> {percentage}%",
     "rotate": 0,
     "format-m": "<span color='#f9e2af' size='11pt'>󰾅</span> {percentage}%",
@@ -207,8 +207,8 @@
   "pulseaudio": {
     "format": "<span color='#fab387' size='11pt'>{icon}</span> {volume}%", // {format_source}
     "format-bluetooth": "<span color='#fab387' size='11pt'>{icon}</span> {volume}%", // {format_source}
-    "format-bluetooth-muted": " ", // {format_source}
-    "format-muted": " ", // {format_source}
+    "format-bluetooth-muted": "<span color='#fab387' size='11pt'> </span>", // {format_source}
+    "format-muted": "<span color='#fab387' size='11pt'> </span>", // {format_source}
     "format-source": "{volume}%",
     "format-source-muted": "",   
     "scroll-step": 5,
@@ -225,6 +225,7 @@
       "phone": "",
       "portable": "",
       "car": "",
+      "muted":" ",
       "default": ["", "", ""]
     }
   },

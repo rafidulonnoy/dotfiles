@@ -44,14 +44,15 @@ window {
   width:		650px;
   border-radius:	15px;
   height:		500px;
-  border: 12px;
-  border-color: @bg;
+  border: 2px;
+  padding:10px 5px;
+  border-color: @fg;
 }
 
 inputbar {
   children:		[ entry ];
   expand:		false;
-  padding:		5px 10px 5px 10px;
+  padding:		5px 10px;
 }
 
 prompt { 
@@ -79,9 +80,10 @@ listview {
 
 element {
   orientation:		horizontal;
-  margin:		2px 3px;
+  margin:		2px 10px;
   children: [ element-icon, element-text ];
-  border-radius:	10px;
+  padding:	0px	15px;
+  border-radius:	15px;
   background-color:	@bgAlt;
 }
 
@@ -99,7 +101,7 @@ element-text {
 element selected {
   background-color:	@fg;
   text-color:		@bg;
-  border-radius:	10px;
+  border-radius:	15px;
 }
 
 mode-switcher {
