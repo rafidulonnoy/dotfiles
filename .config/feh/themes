@@ -1,0 +1,7 @@
+# EXPLANATION OF FLAGS:
+# --geometry 1920x1080: Forces the window to match your exact screen size.
+# --scale-down: Large images shrink to fit the 1080p height/width.
+# --auto-zoom: Small images stretch to fill the 1080p screen (See note below).
+# --image-bg black: Adds black bars to fill empty space (instead of checkerboard).
+
+default --geometry 1920x1080 --scale-down --image-bg black --draw-tinted

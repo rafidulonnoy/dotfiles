@@ -107,7 +107,7 @@ tooltip {
 }
 
 #workspaces button.active {
-  background: @lavender;
+  background: @blue;
   color: @crust;
   padding: 0rem 0.1rem;
   margin:0.2rem 0.2rem;

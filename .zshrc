@@ -1,5 +1,5 @@
 if [ "$(tty)" = "/dev/tty1" ]; then
-  exec Hyprland
+  exec start-hyprland
 fi
 
 # executing fastfetch on kitty startup
@@ -222,3 +222,4 @@ function lazyg() {
 	git commit -m "$1"
 	git push
 }
+export NEXTCLOUD_PHP_CONFIG=/etc/webapps/nextcloud/php.ini

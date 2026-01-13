@@ -1,61 +1,33 @@
 #!/bin/bash
 
-# Directory containing pre-generated wallpaper thumbnails
-THUMBNAIL_DIR="$HOME/.cache/wofi-thumbs/"
+# --- Configuration ---
+WALL_DIR="$HOME/wallpapers/" # Change this to your folder
+TRANSITION_TYPE="grow"                # options: simple, fade, left, right, top, bottom, wipe, wave, grow, center, any, random
+TRANSITION_STEP=255                     # higher = faster transition (1-255)
+TRANSITION_FPS=75                     # frame rate
+TRANSITION_BEZIER=0.0,0.0,1.0,1.0
+TRANSITION_DURATION=1
 
-# Directory containing the original wallpapers
-WALLPAPER_DIR="$HOME/wallpapers/"
+# Check if swww-daemon is running
+if ! swww query > /dev/null 2>&1; then
+    swww-daemon &
+    sleep 0.5 # Wait for daemon to start
+fi
 
-# Function to generate the Wofi menu showing cached thumbnails
-menu() {
-    find "${THUMBNAIL_DIR}" -type f \( -iname "*.jpg" -o -iname "*.jpeg" -o -iname "*.png" -o -iname "*.gif" \) | awk '{print "img:"$0}'
-}
+# 1. Get list of images 
+# 2. Format for Rofi: "filename\0icon\x1f/path/to/file"
+# 3. Use -show-icons to enable thumbnail preview
+CHOICE=$(find "$WALL_DIR" -type f \( -iname "*.jpg" -o -iname "*.png" -o -iname "*.jpeg" -o -iname "*.webp" \) | while read -r img; do
+    echo -en "$(basename "$img")\0icon\x1f$img\n"
+done | rofi -dmenu -i -p "Wallpaper" -no-config -theme ~/.config/rofi/wallpaper.rasi)
 
-# Main function to handle wallpaper selection and updates
-main() {
-    # Show Wofi menu and store selected entry
-    choice=$(menu | wofi -c ~/.config/wofi/config1 -s ~/.config/wofi/style1.css \
-        --show dmenu --prompt " Select Wallpaper:" -n)
+# Exit if no selection was made
+[[ -z "$CHOICE" ]] && exit 0
 
-    # Extract the selected thumbnail file path
-    selected_thumbnail=$(echo "$choice" | sed 's/^thumb://')
-
-    # Get the base filename (without the directory and extension)
-    base_name=$(basename "$selected_thumbnail" | sed 's/\.[^.]*$//')
-
-    # Find the corresponding main wallpaper file
-    selected_wallpaper=$(find "$WALLPAPER_DIR" -type f -iname "$base_name.*" | head -n 1)
-
-    # Set the wallpaper using swww with a smooth transition
-    swww img "$selected_wallpaper" --transition-type any --transition-fps 60 --transition-duration 1.5
-
-    # Generate colors using pywal
-    wal -i "$selected_wallpaper" -n
-
-    # Reload SwayNotificationCenter CSS (if you use themed notifications)
-    # swaync-client --reload-css
-
-    # Update the current Kitty theme with pywal colors
-    cat ~/.cache/wal/colors-kitty.conf > ~/.config/kitty/current-theme.conf
-
-    # Update Firefox theme (if using Pywalfox)
-    # pywalfox update
-
-    # Extract two colors from the generated `colors.sh` file for Cava visualizer
-    color1=$(awk 'match($0, /color2=\47(.*)\47/,a) { print a[1] }' ~/.cache/wal/colors.sh)
-    color2=$(awk 'match($0, /color3=\47(.*)\47/,a) { print a[1] }' ~/.cache/wal/colors.sh)
-
-    # Update the Cava visualizer configuration with new colors
-    cava_config="$HOME/.config/cava/config"
-    sed -i "s/^gradient_color_1 = .*/gradient_color_1 = '$color1'/" "$cava_config"
-    sed -i "s/^gradient_color_2 = .*/gradient_color_2 = '$color2'/" "$cava_config"
-
-    # Restart Cava to apply new colors
-    pkill -USR2 cava || cava -p "$cava_config"
-
-    # Save the selected wallpaper as "pywallpaper.jpg" in ~/wallpapers/
-    cp -r "$selected_wallpaper" ~/wallpapers/pywallpaper.jpg
-}
-
-# Run the main function
-main
+# Set the wallpaper
+swww img "$WALL_DIR/$CHOICE" \
+    --transition-type "$TRANSITION_TYPE" \
+    --transition-step "$TRANSITION_STEP" \
+    --transition-fps "$TRANSITION_FPS" \
+    --transition-bezier "$TRANSITION_BEZIER" \
+    --transition-duration "$TRANSITION_DURATION"

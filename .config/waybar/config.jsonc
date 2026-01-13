@@ -82,7 +82,7 @@
     "format": "<span color='#f38ba8' size='11pt'></span> {temperatureC}°C",
     "rotate": 0,
     "hwmon-path": ["/sys/class/hwmon/hwmon2/temp1_input"],
-    "interval": 1, // once every 5 seconds
+    "interval": 1,
     "tooltip": true
   },
   "memory": {
@@ -106,7 +106,7 @@
     "format": "<span color='#8ec07c' size='11pt'></span> {percentage_used}%",
     "tooltip": true,
     "on-click": "kitty --start-as=fullscreen --title all_is_kitty sh -c 'btop'",
-    "interval": 10
+    "interval": 1
   },
   // "idle_inhibitor": {
   //     "format": "{icon}",

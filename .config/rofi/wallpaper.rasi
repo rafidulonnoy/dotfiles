@@ -1,78 +1,97 @@
 * {
-    font: "JetBrainsMono Nerd Font 13";
-    background-color: #2e3440;
-    text-color: #eceff4;
+  bg:#161320;
+  fg:#b4befe;
+  bgAlt:#1E1E2E;
+  button:#1E1E2E;
+  background-color: @bg;
+  text-color: @fg;
 }
 
-/* Main window settings */
+configuration {
+  show-icons: true;
+  font: "JetBrainsMono Nerd Font 13";
+}
+
 window {
-    padding: 0.5em;                /* Padding around the list */
-    background-color: @background-color;
+  transparency:		"real";
+  width:		80%;
+  height:		80%;
+  border-radius:	15px;
+  border: 2px;
+  padding: 10px;
+  background-color:	@bg;
+  border-color: @fg;
 }
 
-/* Pack only the listview in the mainbox (no prompt) */
-mainbox {
-    /* Override default children to exclude inputbar for a clean grid */
-    children: [ listview ];
+inputbar {
+  enabled: false; // turn on/off inputbar
+  children:		[entry];
+  expand:		false;
+  padding:		5px 10px;
 }
 
-/* Listview: configure as 4-column grid */
+prompt { 
+  enabled: true; 
+  background-color:	@bgAlt;
+  padding:		15px;
+  border-radius:	15px;
+}
+
+entry {
+  background-color:	@bgAlt;
+  placeholder:		"Search";
+  expand:		true;
+  padding:		15px;
+  border-radius:	15px;
+}
+
 listview {
-    /* 4 columns per row for grid of wallpapers:contentReference[oaicite:5]{index=5} */
-    columns: 4;
-    /* Keep exactly 4 columns even if fewer items are visible:contentReference[oaicite:6]{index=6} */
-    fixed-columns: true;
-    /* Space between items for visual separation:contentReference[oaicite:7]{index=7} */
-    spacing: 0.5em;
-    /* Use horizontal layout (row-first fill, like dmenu) */
-    layout: horizontal;
+  columns: 5;
+  lines: 4;
+  spacing: 20px;
+  padding: 10px;
+  flow: horizontal;
+  cycle:		true;
+  dynamic:		true;
+  scrollbar:		false;
+  fixed-width: true;
+  fixed-height: true;
+  fixed-columns: true;
 }
 
-/* Each element (wallpaper entry) */
 element {
-    /* Stack icon above text (vertical orientation):contentReference[oaicite:8]{index=8} */
-    orientation: vertical;
-    padding: 0.3em;       /* Internal padding around icon/text */
-    border-radius: 0.4em; /* Rounded corners for a clean look */
-    /* Background color for entries */
-    background-color: #3b4252;
-}
-element-selected {
-    /* Highlight color for selected entry */
-    background-color: #4c566a;
+  orientation: vertical;
+  spacing: 0px;
+  padding: 0px;
+  border: 2px solid;
+  border-color: #b4befe;
+  border-radius: 10px;
+  background-color:	@bg;
+  children: [ element-icon,element-text ];
 }
 
-/* Thumbnail icon for each entry */
 element-icon {
-    /* Fixed thumbnail size (8em) for consistency */
-    size: 8em;
-    /* Center the icon inside the element box */
-    horizontal-align: 0.5;
-    vertical-align: 0.5;
+  size: 34%;
+  expand: true;
+  // padding: 0px;
+  // spacing:0px;
+  // margin: -50px;
+  horizontal-align: 0.5;
+  vertical-align: 0.5;
+  background-color:	inherit;
 }
 
-/* Optional text label below each icon */
 element-text {
-    /* Center the text */
-    horizontal-align: 0.5;
-    padding-top: 0.2em;
-    /* Wrap or truncate as needed (ellipsis behavior) */
-    /* text-ellipsis: true;  # Uncomment if supported */
+  expand: true;
+  horizontal-align: 0.5;
+  vertical-align: 0.5;
+  padding: 0px;
+  // margin: -20px;
+  background-color:	transparent;
+  text-color:		inherit;
 }
-
-/* Preview pane: when PREVIEW is enabled (e.g. rofi-previewer), show icon-current-entry */
-@media (enabled: env(PREVIEW,false)) {
-    /* The preview widget will expand to fill remaining space */
-    icon-current-entry {
-        expand: true;
-        size: 80%;
-    }
-    /* Split layout: listview on left, preview icon on right */
-    listview-split {
-        children: [ listview, icon-current-entry ];
-    }
-    /* Ensure 4 columns still used in split mode */
-    listview {
-        columns: 4;
-    }
+element selected.normal {
+  background-color:	@fg;
+  text-color:		@bg;
+  border-radius:	10px;
 }

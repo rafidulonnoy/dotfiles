@@ -1,112 +1,100 @@
+# Don't print a new line at the start of the prompt
+add_newline = false
+# Pipes ╰─ ╭─
+# Powerline symbols                                     
+# Wedges 🭧🭒 🭣🭧🭓
+# Random noise 🬖🬥🬔🬗
+# Cool stuff 󰜥   
+
+# format = """
+# $cmd_duration$username$hostname $directory $git_branch
+# $character
+# """
 format = """
-$directory\
-$git_branch\
-$git_status\
-$git_commit\
-$fill\
-$c\
-$golang\
-$java\
-$lua\
-$memory_usage\
-$nix_shell\
-$nodejs\
-$php\
-$python\
-$shell\
-$cmd_duration\
-$line_break\
-$character\
-"""
+$cmd_duration 󰜥 $directory $git_branch
+$character"""
 
-# Path Configuration
-scan_timeout = 30
-command_timeout = 500
+# Replace the "❯" symbol in the prompt with "➜"
+[character]                            # The name of the module we are configuring is "character"
+success_symbol = "[   ](bold fg:blue)"
+error_symbol = "[   ](bold fg:red)"
 
-[directory]
-style = "#94E2D5"
-format = "[$path]($style) "
-truncate_to_repo = true
-read_only = " 󰌾 "
+# Disable the package module, hiding it from the prompt completely
+[package]
+disabled = true
 
-[directory.substitutions]
-"Documents" = "󰈙 "
-"Downloads" = " "
-"Music" = "󰝚 "
-"Pictures" = " "
-"Developer" = "󰲋 "
-
-# # Git Branch Configuration
 [git_branch]
-symbol = " "
-style = "#94E2D5"
-format = '[$symbol($version)]($style)'
-
-# Git Status Configuration
-[git_status]
-conflicted = '🏳'
-ahead = '🏎💨'
-behind = '😰'
-diverged = '😵'
-up_to_date = '✓'
-untracked = '🤷'
-stashed = '📦'
-modified = '📝'
-staged = '[++\($count\)](green)'
-renamed = '👅'
-deleted = '🗑'
-style = "#86BBD8"
-format = "[ $all_status$ahead_behind ]($style)"
+style = "bg: cyan"
+symbol = "󰘬"
+truncation_length = 12
+truncation_symbol = ""
+format = "󰜥 [](bold fg:cyan)[$symbol $branch(:$remote_branch)](fg:black bg:cyan)[ ](bold fg:cyan)"
 
 [git_commit]
-tag_symbol = '  '
-format = '[$symbol($version)]($style)'
+commit_hash_length = 4
+tag_symbol = " "
 
-# Shell Type
-[shell]
-unknown_indicator = 'mystery shell'
-style = 'cyan bold'
+[git_state]
+format = '[\($state( $progress_current of $progress_total)\)]($style) '
+cherry_pick = "[🍒 PICKING](bold red)"
+
+[git_status]
+conflicted = " 🏳 "
+ahead = " 🏎💨 "
+behind = " 😰 "
+diverged = " 😵 "
+untracked = " 🤷 ‍"
+stashed = " 📦 "
+modified = " 📝 "
+staged = '[++\($count\)](green)'
+renamed = " ✍️ "
+deleted = " 🗑 "
+
+[hostname]
+ssh_only = false
+format =  "[•$hostname](bg:cyan bold fg:black)[](bold fg:cyan)"
+trim_at = ".companyname.com"
 disabled = false
 
-# Command Status
-[character]
-success_symbol = "[➜](blue)"
-error_symbol = "[➜](red)"
-vimcmd_symbol = "[❮](green)"
-vimcmd_visual_symbol = '[❮](#FADA5E)'
-
-# Execution Time
-[cmd_duration]
-min_time = 0  # Always show the execution time
-format = "[⏱ $duration](yellow)"
-style = "yellow"
-
-[fill]
-symbol = ' '
-
-[c]
-symbol = " "
-
-[golang]
-symbol = " "
-
-[java]
-symbol = " "
-
-[lua]
-symbol = " "
+[line_break]
+disabled = false
 
 [memory_usage]
-symbol = "󰍛 "
+disabled = true
+threshold = -1
+symbol = " "
+style = "bold dimmed green"
 
-[nix_shell]
-symbol = " "
+[time]
+disabled = true
+format = '🕙[\[ $time \]]($style) '
+time_format = "%T"
 
-[nodejs]
-symbol = " "
+[username]
+style_user = "bold bg:cyan fg:black"
+style_root = "red bold"
+format = "[](bold fg:cyan)[$user]($style)"
+disabled = false
+show_always = true
 
-[php]
-symbol = " "
+[directory]
+home_symbol = "  "
+read_only = "  "
+style = "bg:green fg:black"
+truncation_length = 6
+truncation_symbol = " ••/"
+format = '[](bold fg:green)[󰉋 $path]($style)[](bold fg:green)'
 
-[python]
-symbol = " "
+
+[directory.substitutions]
+"Desktop" = "  "
+"Documents" = "  "
+"Downloads" = "  "
+"Music" = " 󰎈 "
+"Pictures" = "  "
+"Videos" = "  "
+"GitHub" = " 󰊤 "
+
+[cmd_duration]
+min_time = 0
+format = '[](bold fg:yellow)[󰪢 $duration](bold bg:yellow fg:black)[](bold fg:yellow)'
